@@ -10,27 +10,24 @@ namespace Game
     {
         Player player;
         string image;
-        typeOfBuilding type;
-        int min_level;
+        int minLevel;
         int health;
         int exp;
-        bool available;
         int x;
         int y;
         int materialsNeeded;
+        string type;
 
-        public Building() { }
 
-        public Building(Player player, int x, int y)
+        public Building(Player player)
         {
-            this.Player = player;
-            this.X = x;
-            this.Y = y;
+            Player = player;
+            Image = $"/GUI;component/Resources/{Type}{player.Number}.png";
         }
+  
 
-        public bool Available { get => available; set => available = value; }
-        public typeOfBuilding Type { get => type; set => type = value; }
-        public int Min_level { get => min_level; set => min_level = value; }
+
+        public int Min_level { get => minLevel; set => minLevel = value; }
         public int Health { get => health; set => health = value; }
         public string Image { get => image; set => image = value; }
         public int X { get => x; set => x = value; }
@@ -49,9 +46,15 @@ namespace Game
             }
         }
 
+        public string Type { get => type; set => type = value; }
+
+        public string Tip()
+        {
+            return $"{Type}\nHealth: {Health}\nMaterials: {MaterialsNeeded}";
+        }
         public override string ToString()
         {
-            return $"{this.GetType()}\nPlayer: {Player.Name}\nLocation: {x}-{y}\nHealth: {Health}";
+            return $"{this.GetType().ToString()[5..]}\nPlayer: {Player.Name}\nLocation: {x}-{y}\nHealth: {Health}";
         }
 
 

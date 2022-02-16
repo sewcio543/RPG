@@ -10,19 +10,13 @@ namespace Game
         int level = 1;
         int exp = 0;
         string name;
-        List<Skill> skills = new List<Skill>() { };
         Base _base;
         int materials = 100;
+        int number;
 
         public Player() { }
-        public Player(string name)
-        {
-            this.Name = name;
-            this.Base = new Base(this);
-        }
-
-
-
+        public Player(string name) { this.Name = name; }
+             
         public int Level
         {
             get => level;
@@ -33,17 +27,12 @@ namespace Game
             }
         }
 
-        public List<Skill> Skills { get => skills; set => skills = value; }
         public int Exp { get => exp; set => exp = value; }
         public Base Base { get => _base; set => _base = value; }
         public string Name { get => name; set => name = value; }
         public int Materials { get => materials; set => materials = value; }
+        public int Number { get => number; set => number = value; }
 
-        public void addSkill(Skill skill)
-        {
-            if (this.Level >= skill.Min_level)
-                this.Skills.Add(skill);
-        }
 
         public void nextLevel()
         {
@@ -51,7 +40,8 @@ namespace Game
             {
                 this.Exp = this.Exp % (this.Level * 100);
                 this.Level++;
-                Console.WriteLine($"Level {Level}");
+                this.Base.Exp += 20;
+                this.Base.Health += 10;
             }
         }
        

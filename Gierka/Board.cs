@@ -12,13 +12,17 @@ namespace Game
         List<Character> characters = new List<Character>();
         List<Object> objects = new List<Object>();
         List<Player> players = new List<Player>();
-        bool[,] squares = new bool[50, 20];
+        int height;
+        int width;
+        bool[,] squares;
 
-        public Board()
+        public Board(int width, int height)
         {
+            Width = width;
+            Height = height;
+            squares = new bool[Width, Height];
             for (int i = 0; i < 100; i++)
                 generateObject();
-
         }
 
         public object getObjectFromSquare(int x, int y)
@@ -68,7 +72,8 @@ namespace Game
         public List<Building> Buildings { get => buildings; set => buildings = value; }
         public List<Character> Characters { get => characters; set => characters = value; }
         public List<Object> Objects { get => objects; set => objects = value; }
-
+        public int Height { get => height; set => height = value; }
+        public int Width { get => width; set => width = value; }
 
         public void move(Character character, int x, int y)
         {
@@ -78,7 +83,6 @@ namespace Game
                 character.X = x;
                 character.Y = y;
                 Squares[x, y] = true;
-                update();
             }
         }
 
@@ -90,8 +94,8 @@ namespace Game
             int number = random.Next(11);
             do
             {
-                x = random.Next(1, 49);
-                y = random.Next(1, 19);
+                x = random.Next(1, Width - 1);
+                y = random.Next(1, Height - 1);
             } while (!isAvailable(x, y));
 
             if (number < 5)
@@ -108,7 +112,7 @@ namespace Game
 
         public bool isAvailable(int x, int y)
         {
-            if (x > 50 || x < 0 || y > 20 || y < 0)
+            if (x > Width || x < 0 || y > Height || y < 0)
                 return false;
             return !this.Squares[x, y];
         }
@@ -120,18 +124,18 @@ namespace Game
                 if (Players.Count == 0)
                 {
                     this.Players.Add(player);
-                    this.addCharacter(new Wanderer(player, 0, 1));
-                    player.Base.X = 0;
-                    player.Base.Y = 0;
+                    player.Number = 1;
+                    player.Base = new Base(player, 0, 0);
                     addBuilding(player.Base);
+                    this.addCharacter(new Wanderer(player, 0, 1));
                 }
                 else if (Players.Count == 1)
                 {
                     this.Players.Add(player);
-                    this.addCharacter(new Wanderer(player, 49, 18));
-                    player.Base.X = 49;
-                    player.Base.Y = 19;
+                    player.Number = 2;
+                    player.Base = new Base(player, Width - 1, Height - 1);
                     addBuilding(player.Base);
+                    this.addCharacter(new Wanderer(player, Width - 1, Height - 2));
                 }
                 update();
             }
@@ -148,13 +152,13 @@ namespace Game
             Buildings.RemoveAll(a => a.Health == 0);
 
             foreach (Character character in Characters.Where(a => a.Health == 0))
-                    Squares[character.X, character.Y] = false;
+                Squares[character.X, character.Y] = false;
 
             foreach (Character character in Characters.Where(a => a.Health != 0))
-                    Squares[character.X, character.Y] = true;
+                Squares[character.X, character.Y] = true;
 
             Characters.RemoveAll(a => a.Health == 0);
-            
+
             foreach (Object object_ in Objects.Where(a => a.Collected))
                 Squares[object_.X, object_.Y] = false;
 
@@ -162,11 +166,6 @@ namespace Game
                 Squares[object_.X, object_.Y] = true;
 
             Objects.RemoveAll(a => a.Collected);
-             
-
-            foreach (Player player in Players.Where(a => a.Base.Health == 0))
-                    player.lose();
-
 
             using (StreamWriter writer = new StreamWriter("board.csv"))
                 writer.Write(ToString());
@@ -177,7 +176,6 @@ namespace Game
             if (isAvailable(object_.X, object_.Y))
             {
                 this.Objects.Add(object_);
-                // squares = true
                 update();
             }
         }
@@ -186,14 +184,14 @@ namespace Game
         {
             if (isAvailable(building.X, building.Y))
             {
-                if (building.Player.Level >= building.Min_level && building.MaterialsNeeded <= building.Player.Materials)
-                {
-                    this.Buildings.Add(building);
-                    building.Player.Materials -= building.MaterialsNeeded;
-                    update();
-                }
-                else
-                    throw new Exception("inaccessible due to your level or lack of materials");
+                if (building.Player.Level < building.Min_level)
+                    throw new Exception($"Minimum level to build {building.Type} is {building.Min_level}");
+                if (building.MaterialsNeeded > building.Player.Materials)
+                    throw new Exception($"Minimum materials to build {building.Type} is {building.MaterialsNeeded}");
+
+                this.Buildings.Add(building);
+                building.Player.Materials -= building.MaterialsNeeded;
+                update();
             }
         }
 
@@ -201,51 +199,24 @@ namespace Game
         {
             if (isAvailable(character.X, character.Y))
             {
-                if (character.MaterialsNeeded <= character.Player.Materials)
-                {
-                    this.Characters.Add(character);
-                    character.Player.Materials -= character.MaterialsNeeded;
-                    update();
-                }
+                if (character.MaterialsNeeded > character.Player.Materials)
+                    throw new Exception($"Minimum meterials to build {character.Type} is {character.MaterialsNeeded}");
+
+                this.Characters.Add(character);
+                character.Player.Materials -= character.MaterialsNeeded;
+                update();
             }
         }
 
-        public Building search(Building building)
-        {
-            return this.Buildings.Find(a => a.X == building.X && a.Y == building.Y);
-        }
-
-        public Character search(Character character)
-        {
-            return this.Characters.Find(a => a.X == character.X && a.Y == character.Y);
-        }
-
-        public double distance(int x1, int y1, int x2, int y2)
-        {
-            return Math.Sqrt(Math.Pow((x1 - x2), 2) + Math.Pow((y1 - y2), 2));
-        }
-        public void destroy(Building building)
-        {
-            building.Image = "2";
-            this.Buildings.Remove(building);
-        }
-        public void destroy(Character character)
-        {
-            character.Image = "2";
-            this.Characters.Remove(character);
-        }
-
-        public void destroy(Object object_)
-        {
-            object_.Image = "2";
-            this.Objects.Remove(object_);
-        }
-
+        public double distance(int x1, int y1, int x2, int y2) { return Math.Sqrt(Math.Pow((x1 - x2), 2) + Math.Pow((y1 - y2), 2)); }
+    
         public void nextMove(Player player)
         {
             foreach (Building building in Buildings.Where(a => a.Player.Name == player.Name && a.Exp != 0))
                 player.Exp += building.Exp;
+
             player.nextLevel();
+            update();
         }
 
     }

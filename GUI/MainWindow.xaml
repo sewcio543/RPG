@@ -5,8 +5,103 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI"
         mc:Ignorable="d"
-        Title="Game" Height="760" Width="1820" WindowStartupLocation="CenterScreen">
-    <Grid x:Name="mainGrid" Background="Green">
+        Title="Game" WindowStartupLocation="CenterScreen"
+       >
+    <Grid>
+        <Canvas x:Name="upperGrid" Background="AliceBlue" VerticalAlignment="Top">
+            
+            <StackPanel x:Name="levelPanel">
+                <TextBox x:Name="levelTextbox" IsReadOnly="True" Text="Level" HorizontalContentAlignment="Center" Background="Transparent" FontWeight="Bold" BorderThickness="0" VerticalContentAlignment="Center"/>
+                <ProgressBar x:Name="levelBar" Value="0" Maximum="100" Background="AliceBlue" Foreground="#FF4C1968" />
+            </StackPanel>
 
+            <Grid x:Name="levelCircle">
+                <Image x:Name="levelImage" Source="Resources/redCircle.png"/>
+                <TextBox x:Name="levelText" IsReadOnly="True" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="Transparent" BorderThickness="0" Foreground="Black">1</TextBox>
+            </Grid>
+
+            <StackPanel x:Name="actionMenu" Orientation="Horizontal">
+                <Button x:Name="moveButton" Background="Transparent" BorderThickness="0" Click="moveButton_Click">
+                    <StackPanel>
+                        <Image x:Name="moveImage" Source="/Resources/move.png" Width="80" Height="80"></Image>
+                    </StackPanel>
+                </Button>
+
+                <Button x:Name="fightButton" Background="Transparent" BorderThickness="0" Click="fightButton_Click">
+                    <StackPanel>
+                        <Image x:Name="fightImage" Source="/Resources/fight.png" ></Image>
+                    </StackPanel>
+                </Button>
+
+                <Button x:Name="buildButton" Background="Transparent" BorderThickness="0" Click="buildButton_Click">
+                    <StackPanel>
+                        <Image x:Name="buildImage" Source="/Resources/build.png"></Image>
+                    </StackPanel>
+                </Button>
+
+                <Button x:Name="collectButton" Background="Transparent" BorderThickness="0" Click="collectButton_Click">
+                    <StackPanel>
+                        <Image x:Name="collectImage" Source="/Resources/collect.png"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+            
+            <StackPanel x:Name="materialsStack" Orientation="Horizontal">
+                <Image x:Name="treeImage" Source="/Resources/tree.png" />
+                <Image x:Name="stoneImage" Source="/Resources/stone.png" />
+                <Image x:Name="goldImage" Source="/Resources/gold.png"/>
+            </StackPanel>
+
+           
+            <Label x:Name="matsLabel" FontWeight="Bold" Content="100" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  BorderBrush="Black"/>
+
+            <StackPanel x:Name="buildMenu" Visibility="Hidden" Orientation="Horizontal">
+                <Button x:Name="barrackButton" Background="Transparent" BorderThickness="0" VerticalAlignment="Top" HorizontalAlignment="Left"  Click="chooseBuilding">
+                <Grid>
+                   <Image x:Name="barrackImage" Source="/Resources/barrack.png"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </Grid>
+            </Button>
+
+                <Button x:Name="houseButton"  Background="Transparent" BorderThickness="0"  VerticalAlignment="Top" HorizontalAlignment="Left"  Click="chooseBuilding">
+                <Grid>
+                   <Image x:Name="houseImage" Source="/Resources/house.png" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </Grid>
+            </Button>
+
+                <Button x:Name="hospitalButton"  Background="Transparent" BorderThickness="0"  VerticalAlignment="Top" HorizontalAlignment="Left"  Click="chooseBuilding">
+                <Grid>
+                   <Image x:Name="hospitalImage" Source="/Resources/hospital.png" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </Grid>
+            </Button>
+        </StackPanel>
+
+
+             <StackPanel x:Name="barrackMenu" Visibility="Hidden">
+                <Button x:Name="warrior" Background="Transparent" BorderThickness="0" VerticalAlignment="Top" HorizontalAlignment="Left"  Click="createFighter">
+                    <Grid>
+                        <Image x:Name="blackCircle1" Source="/Resources/blackCircle.png" Width="120" Height="120" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <Image x:Name="warriorImage" Source="/Resources/warrior.png"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Grid>
+                </Button>
+
+                <Button x:Name="archer" Background="Transparent" BorderThickness="0" VerticalAlignment="Top" HorizontalAlignment="Left"  Click="createFighter">
+                    <Grid>
+                        <Image x:Name="blackCircle2" Source="/Resources/blackCircle.png" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <Image x:Name="archerImage" Source="/Resources/archer.png"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Grid>
+                </Button>
+
+                <Button x:Name="rider" Background="Transparent" BorderThickness="0" VerticalAlignment="Top" HorizontalAlignment="Left"  Click="createFighter">
+                    <Grid>
+                        <Image x:Name="blackCircle3" Source="/Resources/blackCircle.png" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <Image x:Name="riderImage" Source="/Resources/rider.png" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Grid>
+                </Button>
+            </StackPanel>
+        </Canvas>
+        <Grid x:Name="mainGrid" Background="Green">
+
+
+        </Grid>
     </Grid>
 </Window>

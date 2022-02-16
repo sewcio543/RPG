@@ -8,6 +8,7 @@ namespace Game
     {
         int materials;
         string image;
+        string type;
         bool collected = false;
         int x;
         int y;
@@ -23,10 +24,11 @@ namespace Game
         public int X { get => x; set => x = value; }
         public int Y { get => y; set => y = value; }
         public bool Collected { get => collected; set => collected = value; }
+        public string Type { get => type; set => type = value; }
 
         public override string ToString()
         {
-            return $"{this.GetType()}\nLocation: {x}-{y}\n";
+            return $"{this.GetType().ToString()[5..]}\nLocation: {X}-{Y}\n";
         }
     }
 
@@ -35,7 +37,8 @@ namespace Game
         public Tree(int x, int y) : base(x, y)
         {
             Materials = 50;
-            Image = "";
+            Type = "tree";
+            Image = $"/GUI;component/Resources/{Type}.png";
         }
     }
 
@@ -44,7 +47,8 @@ namespace Game
         public Stone (int x, int y) : base(x, y)
         {
             Materials = 100;
-            Image = "";
+            Type = "stone";
+            Image = $"/GUI;component/Resources/{Type}.png";
         }
     }
 
@@ -53,7 +57,8 @@ namespace Game
         public Gold(int x, int y) : base(x, y)
         {
             Materials = 200;
-            Image = "";
+            Type = "gold";
+            Image = $"/GUI;component/Resources/{Type}.png";
         }
     }
 }

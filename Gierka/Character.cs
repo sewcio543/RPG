@@ -4,33 +4,66 @@ using System.Text;
 
 namespace Game
 {
-    public enum typeOfCharacter { wanderer, warrior, medic }
+    public enum typeOfCharacter { builder, fighter, curer, wrecker }
     public abstract class Character
     {
         int health;
         int damage;
         int leap;
         string image;
-        typeOfCharacter type;
         int x;
         int y;
         int materialsNeeded;
         Player player;
+        string type;
+        int range;
+        typeOfCharacter role;
+        int aid;
+
 
         public Character() { }
-        public Character(Player player, int x, int y)
+        public Character(Player player)
         {
-            this.Player = player;
-            this.X = x;
-            this.Y = y;
+            Player = player;
+            Image = $"/GUI;component/Resources/{Type}{player.Number}.png";
         }
 
         public void collect(Object object_)
         {
-            object_.Collected = true;
-            this.Player.Materials += object_.Materials;
+            if (Role == typeOfCharacter.builder)
+            {
+                object_.Collected = true;
+                Player.Materials += object_.Materials;
+            }
         }
 
+        public void Strike(Character character)
+        {
+            if (Role == typeOfCharacter.fighter)
+                character.Health -= this.Damage;
+        }
+
+        public void Strike(Building building)
+        {
+            if (Role == typeOfCharacter.wrecker)
+                building.Health -= this.Damage;
+        }
+
+        public void cure(Character character)
+        {
+            if (Role == typeOfCharacter.curer)
+                character.Health += this.Aid;
+        }
+
+        public string Tip()
+        {
+            string tip = $"{Type}\nRole: {Role}\nHealth: {Health}\nLeap: {Leap}\nRange: {Range}\nMaterials: {MaterialsNeeded}";
+            if (Role == typeOfCharacter.fighter && Role == typeOfCharacter.wrecker)
+                tip += $"\nDamage: {Damage}";
+            if (Role == typeOfCharacter.curer)
+                tip += $"\nAid: {Aid}";
+            return tip;
+        }
 
         public int Health
         {
@@ -64,26 +97,27 @@ namespace Game
             get => leap;
             set
             {
-                if (value > 20)
-                    leap = 20;
+                if (value > 10)
+                    leap = 10;
                 else if (value < 0)
                     leap = 0;
                 else
                     leap = value;
             }
         }
-        public typeOfCharacter Type { get => type; set => type = value; }
         public string Image { get => image; set => image = value; }
         public int X { get => x; set => x = value; }
         public int Y { get => y; set => y = value; }
         public Player Player { get => player; set => player = value; }
         public int MaterialsNeeded { get => materialsNeeded; set => materialsNeeded = value; }
-
-  
+        public string Type { get => type; set => type = value; }
+        public int Range { get => range; set => range = value; }
+        public typeOfCharacter Role { get => role; set => role = value; }
+        public int Aid { get => aid; set => aid = value; }
 
         public override string ToString()
         {
-            return $"{this.GetType()}\nPlayer: {Player.Name}\nLocation: {X}-{Y}\nHealth: {Health}\n";
+            return $"{this.GetType().ToString()[5..]}\nPlayer: {Player.Name}\nLocation: {X}-{Y}\nHealth: {Health}\n";
         }
 
 
