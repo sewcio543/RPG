@@ -1,18 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 
 namespace Game
 {
-    public class Player
+    public class Player : IComparable<Player>, IEquatable<Player>
     {
         int level = 1;
         int exp = 0;
         string name;
         Base _base;
         int materials = 100;
-        int number;
+        string color;
+        bool[,] charted;
 
         public Player() { }
         public Player(string name) { this.Name = name; }
@@ -31,10 +33,10 @@ namespace Game
         public Base Base { get => _base; set => _base = value; }
         public string Name { get => name; set => name = value; }
         public int Materials { get => materials; set => materials = value; }
-        public int Number { get => number; set => number = value; }
+        public string Color { get => color; set => color = value; }
+        public bool[,] Charted { get => charted; set => charted = value; }
 
-
-        public void nextLevel()
+        public bool nextLevel()
         {
             if (this.Exp >= this.Level * 100 )
             {
@@ -42,24 +44,28 @@ namespace Game
                 this.Level++;
                 this.Base.Exp += 20;
                 this.Base.Health += 10;
+                return true;
             }
+            return false;
         }
        
-        public void win()
-        {
-            Console.WriteLine("You won!");
-        }
-
-        public void lose()
-        {
-            Console.WriteLine("You lost!");
-        }
-
 
         public override string ToString()
         {
-            return $"Name: {Name}\nLevel: {Level}\nExp: {Exp}\nMaterials: {Materials}";
+            return $"Name: {Name}";
         }
 
+
+        public int CompareTo( Player other)
+        {
+            if (this.Level == other.Level)
+                return this.Exp.CompareTo(other.Exp);
+            return this.Level.CompareTo(other.Level);
+        }
+
+        public bool Equals( Player other)
+        {
+            return this.Name == other.Name;
+        }
     }
 }

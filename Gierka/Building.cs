@@ -4,8 +4,6 @@ using System.Text;
 
 namespace Game
 {
-    public enum typeOfBuilding { water, mountain, war, general }
-
     public abstract class Building
     {
         Player player;
@@ -17,18 +15,32 @@ namespace Game
         int y;
         int materialsNeeded;
         string type;
+        typeOfTerrain terrain;
+        int maxHealth;
 
 
         public Building(Player player)
         {
             Player = player;
-            Image = $"/GUI;component/Resources/{Type}{player.Number}.png";
+            Image = $"/GUI;component/Resources/{Type}{player.Color}.png";
         }
   
-
+   
 
         public int Min_level { get => minLevel; set => minLevel = value; }
-        public int Health { get => health; set => health = value; }
+        public int Health
+        {
+            get => health;
+            set
+            {
+                if (value > 1000)
+                    health = 1000;
+                else if (value < 0)
+                    health = 0;
+                else
+                    health = value;
+            }
+        }
         public string Image { get => image; set => image = value; }
         public int X { get => x; set => x = value; }
         public int Y { get => y; set => y = value; }
@@ -47,6 +59,8 @@ namespace Game
         }
 
         public string Type { get => type; set => type = value; }
+        public typeOfTerrain Terrain { get => terrain; set => terrain = value; }
+        public int MaxHealth { get => maxHealth; set => maxHealth = value; }
 
         public string Tip()
         {

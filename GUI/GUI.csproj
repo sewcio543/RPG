@@ -6,33 +6,254 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Resources\archer - Copy.png" />
+    <None Remove="Resources\archerBlue.png" />
+    <None Remove="Resources\archerGreen.png" />
+    <None Remove="Resources\archerPurple.png" />
+    <None Remove="Resources\archerRed.png" />
+    <None Remove="Resources\archerYellow.png" />
+    <None Remove="Resources\armory - Copy.png" />
+    <None Remove="Resources\armory.png" />
+    <None Remove="Resources\armory1.png" />
+    <None Remove="Resources\armory2.png" />
+    <None Remove="Resources\armoryBlue.png" />
+    <None Remove="Resources\armoryGreen.png" />
+    <None Remove="Resources\armoryPurple.png" />
+    <None Remove="Resources\armoryRed.png" />
+    <None Remove="Resources\armoryYellow.png" />
+    <None Remove="Resources\barrackBlue.png" />
+    <None Remove="Resources\barrackGreen.png" />
+    <None Remove="Resources\barrackPurple.png" />
+    <None Remove="Resources\barrackRed.png" />
+    <None Remove="Resources\barrackYellow.png" />
+    <None Remove="Resources\base - Copy.png" />
+    <None Remove="Resources\baseBlue.png" />
+    <None Remove="Resources\baseGreen.png" />
+    <None Remove="Resources\basePurple.png" />
+    <None Remove="Resources\baseRed.png" />
+    <None Remove="Resources\baseYellow.png" />
+    <None Remove="Resources\batteringRam - Copy.png" />
+    <None Remove="Resources\batteringRamBlue.png" />
+    <None Remove="Resources\batteringRamGreen.png" />
+    <None Remove="Resources\batteringRamPurple.png" />
+    <None Remove="Resources\batteringRamRed.png" />
+    <None Remove="Resources\batteringRamYellow.png" />
+    <None Remove="Resources\blackCircle - Copy.png" />
+    <None Remove="Resources\build - Copy.png" />
+    <None Remove="Resources\cannon - Copy.png" />
+    <None Remove="Resources\cannon1.png" />
+    <None Remove="Resources\cannonBlue.png" />
+    <None Remove="Resources\cannonGreen.png" />
+    <None Remove="Resources\cannonPurple.png" />
+    <None Remove="Resources\cannonRed.png" />
+    <None Remove="Resources\cannonYellow.png" />
+    <None Remove="Resources\catapult - Copy.png" />
+    <None Remove="Resources\catapult.png" />
+    <None Remove="Resources\catapultBlue.png" />
+    <None Remove="Resources\catapultGreen.png" />
+    <None Remove="Resources\catapultPurple.png" />
+    <None Remove="Resources\catapultRed.png" />
+    <None Remove="Resources\catapultYellow.png" />
+    <None Remove="Resources\collect - Copy.png" />
+    <None Remove="Resources\farm - Copy.png" />
+    <None Remove="Resources\farmBlue.png" />
+    <None Remove="Resources\farmGreen.png" />
+    <None Remove="Resources\farmPurple.png" />
+    <None Remove="Resources\farmRed.png" />
+    <None Remove="Resources\farmYellow.png" />
+    <None Remove="Resources\fight - Copy.png" />
+    <None Remove="Resources\gold - Copy.png" />
+    <None Remove="Resources\greenCircle - Copy.png" />
+    <None Remove="Resources\houseBlue.png" />
+    <None Remove="Resources\houseGreen.png" />
+    <None Remove="Resources\housePurple.png" />
+    <None Remove="Resources\houseRed.png" />
+    <None Remove="Resources\houseYellow.png" />
+    <None Remove="Resources\image.png" />
+    <None Remove="Resources\mineBlue.png" />
+    <None Remove="Resources\mineGreen.png" />
+    <None Remove="Resources\minePurple.png" />
+    <None Remove="Resources\mineRed.png" />
+    <None Remove="Resources\mineYellow.png" />
+    <None Remove="Resources\next.png" />
+    <None Remove="Resources\portBlue.png" />
+    <None Remove="Resources\portGreen.png" />
+    <None Remove="Resources\portPurple.png" />
+    <None Remove="Resources\portRed.png" />
+    <None Remove="Resources\portYellow.png" />
+    <None Remove="Resources\redCircle.png" />
+    <None Remove="Resources\riderBlue.png" />
+    <None Remove="Resources\riderGreen.png" />
+    <None Remove="Resources\riderPurple.png" />
+    <None Remove="Resources\riderRed.png" />
+    <None Remove="Resources\riderYellow.png" />
+    <None Remove="Resources\soldier.png" />
+    <None Remove="Resources\soldierBlue.png" />
+    <None Remove="Resources\soldierPurple.png" />
+    <None Remove="Resources\soldierRed.png" />
+    <None Remove="Resources\soldierYellow.png" />
+    <None Remove="Resources\wandererBlue.png" />
+    <None Remove="Resources\wandererGreen.png" />
+    <None Remove="Resources\wandererPurple.png" />
+    <None Remove="Resources\wandererRed.png" />
+    <None Remove="Resources\wandererYellow.png" />
+    <None Remove="Resources\warriorBlue.png" />
+    <None Remove="Resources\warriorGreen.png" />
+    <None Remove="Resources\warriorPurple.png" />
+    <None Remove="Resources\warriorRed.png" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <Content Include="Resources\archer.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\archer2.png">
+    <Content Include="Resources\archerBlue.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\archerGreen.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\archerPurple.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\archerRed.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\archerYellow.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\armory.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\armoryBlue.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\armoryGreen.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\armoryPurple.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\armoryRed.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\armoryYellow.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\barrack.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\barrack1.png">
+    <Content Include="Resources\barrackBlue.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\barrack2.png">
+    <Content Include="Resources\barrackGreen.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\barrackPurple.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\barrackRed.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\barrackYellow.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\base.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\base1.png">
+    <Content Include="Resources\baseBlue.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\baseGreen.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\basePurple.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\baseRed.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\baseYellow.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\batteringRam.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\batteringRamBlue.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\batteringRamGreen.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\batteringRamPurple.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\batteringRamRed.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\batteringRamYellow.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\build.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\cannon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\cannonBlue.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\cannonGreen.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\cannonPurple.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\cannonRed.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\cannonYellow.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\catapult.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\catapultBlue.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\catapultGreen.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\catapultPurple.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\catapultRed.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\catapultYellow.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\collect.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\farm.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\farmBlue.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\farmGreen.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\farmPurple.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\farmRed.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\farmYellow.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\fight.png">
@@ -44,37 +265,109 @@
     <Content Include="Resources\greenCircle.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\hospital.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\hospital1.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\hospital2.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Resources\house.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\house1.png">
+    <Content Include="Resources\houseBlue.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\house2.png">
+    <Content Include="Resources\houseGreen.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\housePurple.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\houseRed.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\houseYellow.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\image.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\mine.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\mineBlue.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\mineGreen.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\minePurple.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\mineRed.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\mineYellow.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\mountain.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\move.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\next.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\port.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\portBlue.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\portGreen.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\portPurple.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\portRed.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\portYellow.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\redCircle.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\redSquare.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\rider.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\rider1.png">
+    <Content Include="Resources\riderBlue.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\rider2.png">
+    <Content Include="Resources\riderGreen.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\riderPurple.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\riderRed.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\riderYellow.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\soldier.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\soldierBlue.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\soldierPurple.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\soldierRed.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\soldierYellow.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\stone.png">
@@ -83,34 +376,46 @@
     <Content Include="Resources\tree.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\wanderer1.gif">
+    <Content Include="Resources\wandererBlue.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\wanderer1.png">
+    <Content Include="Resources\wandererGreen.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\wanderer2.png">
+    <Content Include="Resources\wandererPurple.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\wandererRed.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\wandererYellow.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\warrior.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\warrior1.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\warrior2.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-	  <Content Include="Resources\archer1.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Resources\wanderer.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-	<Content Include="Resources\base2.png">
+	<Content Include="Resources\blackCircle.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-	<Content Include="Resources\blackCircle.png">
+	<Content Include="Resources\warriorBlue.png">
+	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	</Content>
+	<Content Include="Resources\warriorGreen.png">
+	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	</Content>
+	<Content Include="Resources\warriorPurple.png">
+	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	</Content>
+	<Content Include="Resources\warriorRed.png">
+	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	</Content>
+	<Content Include="Resources\water.png">
+	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	</Content>
+	  <Content Include="Resources\greenSquare.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

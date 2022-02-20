@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 
 namespace Game
 {
     public enum typeOfCharacter { builder, fighter, curer, wrecker }
-    public abstract class Character
+    public abstract class Character: IEquatable<Character>
     {
         int health;
         int damage;
@@ -19,14 +20,18 @@ namespace Game
         int range;
         typeOfCharacter role;
         int aid;
+        typeOfTerrain terrain;
+        int maxHealth;
+ 
 
 
         public Character() { }
         public Character(Player player)
         {
             Player = player;
-            Image = $"/GUI;component/Resources/{Type}{player.Number}.png";
+            Image = $"/GUI;component/Resources/{Type}{player.Color}.png";
         }
+
 
         public void collect(Object object_)
         {
@@ -114,13 +119,18 @@ namespace Game
         public int Range { get => range; set => range = value; }
         public typeOfCharacter Role { get => role; set => role = value; }
         public int Aid { get => aid; set => aid = value; }
+        public typeOfTerrain Terrain { get => terrain; set => terrain = value; }
+        public int MaxHealth { get => maxHealth; set => maxHealth = value; }
 
         public override string ToString()
         {
             return $"{this.GetType().ToString()[5..]}\nPlayer: {Player.Name}\nLocation: {X}-{Y}\nHealth: {Health}\n";
         }
 
-
+        public bool Equals(Character other)
+        {
+            return (this.X == other.X && this.Y == other.Y);
+        }
     }
 
 

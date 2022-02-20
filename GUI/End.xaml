@@ -5,8 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI"
         mc:Ignorable="d"
-        Title="End" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="End" Height="160"  Width="600" WindowStartupLocation="CenterScreen" Background="orange">
     <Grid>
-        <Label x:Name="winner" Content="" Width="600" Height="400" Background="AliceBlue" FontSize="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Label x:Name="winner" Margin="0,20,0,0" Width="500" Height="100" Background="DarkOrange" Content="Hello" VerticalAlignment="Top" FontSize="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Button x:Name="nextGame" Margin="100,120,0,0" Visibility="Hidden" Content="Next Game" Width="200" Height="50" HorizontalAlignment="Left" Click="nextGame_Click" />
+        <Button x:Name="exit" Margin="300,120,0,0" Visibility="Hidden" Content="Exit" Width="200" Height="50" HorizontalAlignment="Left" Click="exit_Click"/>
+
+
+
     </Grid>
 </Window>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -22,9 +23,28 @@ namespace GUI
         {
             InitializeComponent();
         }
-        public End(Player player): base()
+        public End(Player player, Board board, bool won = false) : this()
         {
-            winner.Content = $"Player {player.Name} lost!";
+            winner.Content = $"Player {player.Name} {(won == true ? "won :D" : "lost :(")}";
+            if (won)
+            {
+                nextGame.Visibility = Visibility.Visible;
+                exit.Visibility = Visibility.Visible;
+                Width += 100;
+            }
+        }
+
+
+        private void exit_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void nextGame_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            StartWindow window = new StartWindow();
+            window.Show();
         }
     }
 }
