@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
@@ -20,76 +21,111 @@ namespace GUI
     public partial class StartWindow : Window
     {
         Board board;
+        ArrayList textboxes;
         public StartWindow()
         {
             InitializeComponent();
+            textboxes = new ArrayList() { player1, player2, player3, player4 };
+            board = new Board(25, 15);
 
+            player2.IsEnabled = false;
+            player3.IsEnabled = false;
         }
 
         private void start_Click(object sender, RoutedEventArgs e)
         {
-            if (board.Players.Count > 1)
-            {
-                MainWindow window = new MainWindow(board);
-                window.Show();
-                this.Close();
-            }
-            else
-                MessageBox.Show(this, "At least two players have to join to start!", "Impossible", MessageBoxButton.OK, MessageBoxImage.Information);
-        }
-
-        private void join_Click(object sender, RoutedEventArgs e)
-        {
+            board.Players.Clear();
+            int width_ = 25;
+            int height_ = 15;
             try
-            { board.addPlayer(new Player(playerName.Text)); }
-            catch (Exception error)
-            { MessageBox.Show(error.Message, $"Can't add the player with name {playerName.Text}", MessageBoxButton.OK, MessageBoxImage.Exclamation); }
-            playersList.ItemsSource = new ObservableCollection<Player>(board.Players);
+            {
+                width_ = Convert.ToInt32(width.Text);
+                height_ = Convert.ToInt32(height.Text);
+                board = new Board(width_, height_);
+
+                foreach (TextBox textbox in textboxes)
+                {
+                    if (textbox.Text != "")
+                    {
+                        try
+                        {
+                            if (creative.IsChecked == true)
+                                board.addPlayer(new Player(textbox.Text) { Materials = 10000, Level = 8 });
+                            else
+                                board.addPlayer(new Player(textbox.Text));
+                        }
+                        catch (Exception ex)
+                        { MessageBox.Show(ex.Message, "Impossible", MessageBoxButton.OK, MessageBoxImage.Information); }
+
+                    }
+                }
+                if (board.Players.Count <= 1)
+                    MessageBox.Show("At least two players have to join to start!", "Impossible", MessageBoxButton.OK, MessageBoxImage.Information);
+                else
+                {
+                    MainWindow window = new MainWindow(board);
+                    window.Show();
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Impossible!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+
         }
 
-        private void size_Click(object sender, RoutedEventArgs e)
+        private void player1_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (width.Text != "" && height.Text != "")
+            if (player1.Text != "")
+                player2.IsEnabled = true;
+            else
             {
-                int width_ = 0, height_ = 0;
-                try
-                {
-                    width_ = Convert.ToInt32(width.Text);
-                    width.Background = Brushes.White;
-                }
-                catch (Exception error)
-                {
-                    width.Background = Brushes.Red;
-                    MessageBox.Show(error.Message, "Impossible!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                }
-
-                try
-                {
-                    height_ = Convert.ToInt32(height.Text);
-                    height.Background = Brushes.White; 
-                }
-                catch (Exception error)
-            {
-                height.Background = Brushes.Red;
-                MessageBox.Show(error.Message, "Impossible!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                player2.IsEnabled = false;
+                player3.IsEnabled = false;
+                player4.IsEnabled = false;
+                start.IsEnabled = false;
             }
-            if (width_ != 0 && height_ != 0)
-            {
-                try
-                {
-                    board = new Board(width_, height_);
-                    playerName.Visibility = Visibility.Visible;
-                    join.Visibility = Visibility.Visible;
-                    start.Visibility = Visibility.Visible;
-                }
-                catch (Exception error)
-                { MessageBox.Show(error.Message, "Impossible!", MessageBoxButton.OK, MessageBoxImage.Exclamation); }
 
-
-            }
         }
 
+        private void player2_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (player2.Text != "")
+            {
+                start.IsEnabled = true;
+                player3.IsEnabled = true;
+            }
+           else
+            {
+                player3.IsEnabled = false;
+                player4.IsEnabled = false;
+                start.IsEnabled = false;
+            }
+
+        }
+
+        private void player3_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (player3.Text != "")
+                player4.IsEnabled = true;
+            else
+                player4.IsEnabled = false;         
+        }
+
+        private void player2_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (player2.IsEnabled && player3.Text != "")
+                player3.IsEnabled = true;
+        }
+
+        private void player3_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (player3.IsEnabled && player4.Text != "")
+                player4.IsEnabled = true;
+
+        }
     }
 
-}
+
 }

@@ -5,23 +5,39 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI"
         mc:Ignorable="d"
-        Title="StartWindow" Height="280" Width="550" Background="ForestGreen" WindowStartupLocation="CenterScreen">
+        Title="Start" Height="680" Width="360" Background="ForestGreen" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
-        <Button x:Name="join" Content="Join" Visibility="Hidden" Margin="30,110,0,0" Width="100" Height="50" Click="join_Click" Background="Transparent" BorderBrush="Black" FontWeight="Bold"  FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-        <TextBox x:Name="playerName" Visibility="Hidden" MaxLength="10" Margin="50,170,0,0" Width="200" Height="50" VerticalAlignment="Top" VerticalContentAlignment="Center" FontSize="30"  HorizontalAlignment="Left"/>
-        <Button x:Name="start" Visibility="Hidden" Margin="150,110,0,0" Content="Start" FontSize="20" FontWeight="Bold" Background="Transparent" BorderBrush="Black" Width="100" Height="50" VerticalAlignment="Top" HorizontalAlignment="Left" Click="start_Click"/>
-        <ListBox x:Name="playersList" Margin="300,10,0,0" Width="200" Height="120"  VerticalAlignment="Top" HorizontalAlignment="Left" />
-        
-        <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
-            <Label Content="Width" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" FontWeight="Bold"/>
-            <TextBox x:Name="width" MaxLength="2" Width="50" Height="40" VerticalAlignment="Top" VerticalContentAlignment="Center" FontSize="30"  HorizontalAlignment="Left"/>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center">
+            <Image Source="/Resources/baseYellow.png" Width="80" Height="80"/>
+            <Image Source="/Resources/wandererBlue.png" Width="80" Height="80"/>
+            <Image Source="/Resources/wandererRed.png" Width="80" Height="80"/>
+            <Image Source="/Resources/basePurple.png" Width="80" Height="80"/>
         </StackPanel>
-        <StackPanel Margin="0,60,0,0" Orientation="Horizontal">
-            <Label  Content="Height" HorizontalAlignment="Left" VerticalAlignment="Top" Width="100" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" FontWeight="Bold"/>
-            <TextBox x:Name="height" MaxLength="10" Width="50" Height="40"  VerticalAlignment="Top" VerticalContentAlignment="Center" FontSize="30"  HorizontalAlignment="Left"/>
-        </StackPanel>
-        <Button x:Name="size" Content="Set" Margin="175,35,0,0" Width="100" Height="50" Click="size_Click" Background="Transparent" BorderBrush="Black" FontWeight="Bold"  FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Top" HorizontalAlignment="Left"/>
 
+        <StackPanel Margin="0,80,0,0">
+            <TextBox Margin="0,20,0,0" x:Name="player1"  MaxLength="10" Background="Blue" Foreground="MistyRose"  Width="200" Height="50" VerticalAlignment="Top" VerticalContentAlignment="Center" FontSize="30"  HorizontalAlignment="Center" TextChanged="player1_TextChanged"/>
+            <TextBox Margin="0,10,0,0" x:Name="player2"   MaxLength="10" Background="Red" Foreground="Black"  Width="200" Height="50" VerticalAlignment="Top" VerticalContentAlignment="Center" FontSize="30"  HorizontalAlignment="Center" TextChanged="player2_TextChanged" IsEnabledChanged="player2_IsEnabledChanged"/>
+            <TextBox Margin="0,10,0,0" x:Name="player3"  MaxLength="10" Background="Yellow" Foreground="Green"  Width="200" Height="50" VerticalAlignment="Top" VerticalContentAlignment="Center" FontSize="30"  HorizontalAlignment="Center" TextChanged="player3_TextChanged" IsEnabledChanged="player3_IsEnabledChanged"/>
+            <TextBox Margin="0,10,0,0" x:Name="player4" IsEnabled="False" MaxLength="10" Background="Purple" Foreground="Green"  Width="200" Height="50" VerticalAlignment="Top" VerticalContentAlignment="Center" FontSize="30"  HorizontalAlignment="Center"/>
+            <Button Margin="0,20,0,0" x:Name="start" IsEnabled="False" Content="Start" FontSize="20" Background="LightSeaGreen" FontWeight="Bold" BorderBrush="Black" Width="200" Height="50" VerticalAlignment="Top" HorizontalAlignment="Center" Click="start_Click" />
+            <CheckBox Margin="0,10,0,0" x:Name="creative" FontSize="16" FontWeight="Bold" Content="Creative Mode" Width="200" Height="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <StackPanel Margin="0,10,0,0" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Label  Content="Width" HorizontalAlignment="Left" Background="LightSeaGreen" VerticalAlignment="Top" Width="100" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" FontWeight="Bold"/>
+                <TextBox Margin="20,5,0,0" Text="25" x:Name="width" MaxLength="2" Width="50" Background="LightSeaGreen" Height="40" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="30"  HorizontalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Margin="0,10,0,0"  Orientation="Horizontal" HorizontalAlignment="Center">
+                <Label  Content="Height" HorizontalAlignment="Left" VerticalAlignment="Top" Background="LightSeaGreen" Width="100" Height="50" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" FontWeight="Bold"/>
+                <TextBox  Margin="20,5,0,0" Text="15" x:Name="height" MaxLength="10" Width="50" Height="40" Background="LightSeaGreen"  VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="30"  HorizontalAlignment="Center"/>
+            </StackPanel>
+        </StackPanel>
+
+        
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+            <Image Source="/Resources/baseBlue.png" Width="80" Height="80"/>
+            <Image Source="/Resources/wandererYellow.png" Width="80" Height="80"/>
+            <Image Source="/Resources/wandererPurple.png" Width="80" Height="80"/>
+            <Image Source="/Resources/baseRed.png" Width="80" Height="80"/>
+        </StackPanel>
 
     </Grid>
 </Window>

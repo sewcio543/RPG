@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
+using System.Xml.Serialization;
 
 namespace Game
 {
-    public enum typeOfCharacter { builder, fighter, curer, wrecker }
-    public abstract class Character: IEquatable<Character>
+    public enum typeOfCharacter { builder, fighter, wrecker }
+
+    [Serializable]
+    public abstract class Character : IEquatable<Character>
     {
         int health;
         int damage;
@@ -20,17 +23,9 @@ namespace Game
         int range;
         typeOfCharacter role;
         int aid;
-        typeOfTerrain terrain;
         int maxHealth;
- 
 
-
-        public Character() { }
-        public Character(Player player)
-        {
-            Player = player;
-            Image = $"/GUI;component/Resources/{Type}{player.Color}.png";
-        }
+        public Character(Player player) { Player = player; }
 
 
         public void collect(Object object_)
@@ -44,30 +39,38 @@ namespace Game
 
         public void Strike(Character character)
         {
-            if (Role == typeOfCharacter.fighter)
-                character.Health -= this.Damage;
+            if (Role == typeOfCharacter.fighter && character.Role == typeOfCharacter.fighter)
+                character.Health -= Damage;
+
+            if (Role == typeOfCharacter.wrecker && character.Role == typeOfCharacter.wrecker)
+                character.Health -= Damage;
+
         }
 
         public void Strike(Building building)
         {
             if (Role == typeOfCharacter.wrecker)
-                building.Health -= this.Damage;
+                building.Health -= Damage;
         }
 
-        public void cure(Character character)
-        {
-            if (Role == typeOfCharacter.curer)
-                character.Health += this.Aid;
-        }
+
 
         public string Tip()
         {
             string tip = $"{Type}\nRole: {Role}\nHealth: {Health}\nLeap: {Leap}\nRange: {Range}\nMaterials: {MaterialsNeeded}";
             if (Role == typeOfCharacter.fighter && Role == typeOfCharacter.wrecker)
                 tip += $"\nDamage: {Damage}";
-            if (Role == typeOfCharacter.curer)
-                tip += $"\nAid: {Aid}";
             return tip;
+        }
+
+        public override string ToString()
+        {
+            return $"{this.GetType().ToString()[5..]}\nPlayer: {Player.Name}\nHealth: {Health}\n";
+        }
+
+        public bool Equals(Character other)
+        {
+            return (this.X == other.X && this.Y == other.Y);
         }
 
         public int Health
@@ -75,8 +78,8 @@ namespace Game
             get => health;
             set
             {
-                if (value > 20)
-                    health = 20;
+                if (value > 300)
+                    health = 300;
                 else if (value < 0)
                     health = 0;
                 else
@@ -89,8 +92,8 @@ namespace Game
             get => damage;
             set
             {
-                if (value > 20)
-                    damage = 20;
+                if (value > 100)
+                    damage = 100;
                 else if (value < 0)
                     damage = 0;
                 else
@@ -119,18 +122,8 @@ namespace Game
         public int Range { get => range; set => range = value; }
         public typeOfCharacter Role { get => role; set => role = value; }
         public int Aid { get => aid; set => aid = value; }
-        public typeOfTerrain Terrain { get => terrain; set => terrain = value; }
         public int MaxHealth { get => maxHealth; set => maxHealth = value; }
 
-        public override string ToString()
-        {
-            return $"{this.GetType().ToString()[5..]}\nPlayer: {Player.Name}\nLocation: {X}-{Y}\nHealth: {Health}\n";
-        }
-
-        public bool Equals(Character other)
-        {
-            return (this.X == other.X && this.Y == other.Y);
-        }
     }
 
 

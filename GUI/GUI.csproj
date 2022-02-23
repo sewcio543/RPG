@@ -4,6 +4,7 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>Resources\icon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -62,6 +63,7 @@
     <None Remove="Resources\farmPurple.png" />
     <None Remove="Resources\farmRed.png" />
     <None Remove="Resources\farmYellow.png" />
+    <None Remove="Resources\field.png" />
     <None Remove="Resources\fight - Copy.png" />
     <None Remove="Resources\gold - Copy.png" />
     <None Remove="Resources\greenCircle - Copy.png" />
@@ -70,7 +72,6 @@
     <None Remove="Resources\housePurple.png" />
     <None Remove="Resources\houseRed.png" />
     <None Remove="Resources\houseYellow.png" />
-    <None Remove="Resources\image.png" />
     <None Remove="Resources\mineBlue.png" />
     <None Remove="Resources\mineGreen.png" />
     <None Remove="Resources\minePurple.png" />
@@ -102,6 +103,7 @@
     <None Remove="Resources\warriorGreen.png" />
     <None Remove="Resources\warriorPurple.png" />
     <None Remove="Resources\warriorRed.png" />
+    <None Remove="Resources\warriorYellow.png" />
   </ItemGroup>
 
 
@@ -164,9 +166,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\baseBlue.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\baseGreen.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\basePurple.png">
@@ -256,6 +255,9 @@
     <Content Include="Resources\farmYellow.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\field.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\fight.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -283,9 +285,7 @@
     <Content Include="Resources\houseYellow.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\image.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Resources\icon.ico" />
     <Content Include="Resources\mine.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -410,6 +410,9 @@
 	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	</Content>
 	<Content Include="Resources\warriorRed.png">
+	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	</Content>
+	<Content Include="Resources\warriorYellow.png">
 	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	</Content>
 	<Content Include="Resources\water.png">

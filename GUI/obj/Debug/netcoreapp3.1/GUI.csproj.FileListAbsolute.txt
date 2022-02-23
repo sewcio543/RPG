@@ -1,5 +1,4 @@
 C:\Users\xxx\Desktop\Gierka\GUI\obj\Debug\netcoreapp3.1\GUI.csproj.AssemblyReference.cache
-C:\Users\xxx\Desktop\Gierka\GUI\obj\Debug\netcoreapp3.1\BarrackWindow.g.cs
 C:\Users\xxx\Desktop\Gierka\GUI\obj\Debug\netcoreapp3.1\End.g.cs
 C:\Users\xxx\Desktop\Gierka\GUI\obj\Debug\netcoreapp3.1\App.g.cs
 C:\Users\xxx\Desktop\Gierka\GUI\obj\Debug\netcoreapp3.1\GUI_Content.g.cs
@@ -43,7 +42,6 @@ C:\Users\xxx\Desktop\Gierka\GUI\bin\Debug\netcoreapp3.1\GUI.pdb
 C:\Users\xxx\Desktop\Gierka\GUI\bin\Debug\netcoreapp3.1\Gierka.dll
 C:\Users\xxx\Desktop\Gierka\GUI\bin\Debug\netcoreapp3.1\Gierka.pdb
 C:\Users\xxx\Desktop\Gierka\GUI\obj\Debug\netcoreapp3.1\MainWindow.g.cs
-C:\Users\xxx\Desktop\Gierka\GUI\obj\Debug\netcoreapp3.1\BarrackWindow.baml
 C:\Users\xxx\Desktop\Gierka\GUI\obj\Debug\netcoreapp3.1\End.baml
 C:\Users\xxx\Desktop\Gierka\GUI\obj\Debug\netcoreapp3.1\MainWindow.baml
 C:\Users\xxx\Desktop\Gierka\GUI\obj\Debug\netcoreapp3.1\GUI.g.resources
@@ -72,7 +70,6 @@ C:\Users\xxx\Desktop\Gierka\GUI\bin\Debug\netcoreapp3.1\Resources\barrackGreen.p
 C:\Users\xxx\Desktop\Gierka\GUI\bin\Debug\netcoreapp3.1\Resources\barrackRed.png
 C:\Users\xxx\Desktop\Gierka\GUI\bin\Debug\netcoreapp3.1\Resources\barrackYellow.png
 C:\Users\xxx\Desktop\Gierka\GUI\bin\Debug\netcoreapp3.1\Resources\baseBlue.png
-C:\Users\xxx\Desktop\Gierka\GUI\bin\Debug\netcoreapp3.1\Resources\baseGreen.png
 C:\Users\xxx\Desktop\Gierka\GUI\bin\Debug\netcoreapp3.1\Resources\baseRed.png
 C:\Users\xxx\Desktop\Gierka\GUI\bin\Debug\netcoreapp3.1\Resources\baseYellow.png
 C:\Users\xxx\Desktop\Gierka\GUI\bin\Debug\netcoreapp3.1\Resources\batteringRamBlue.png
@@ -94,7 +91,6 @@ C:\Users\xxx\Desktop\Gierka\GUI\bin\Debug\netcoreapp3.1\Resources\farmYellow.png
 C:\Users\xxx\Desktop\Gierka\GUI\bin\Debug\netcoreapp3.1\Resources\houseGreen.png
 C:\Users\xxx\Desktop\Gierka\GUI\bin\Debug\netcoreapp3.1\Resources\houseRed.png
 C:\Users\xxx\Desktop\Gierka\GUI\bin\Debug\netcoreapp3.1\Resources\houseYellow.png
-C:\Users\xxx\Desktop\Gierka\GUI\bin\Debug\netcoreapp3.1\Resources\image.png
 C:\Users\xxx\Desktop\Gierka\GUI\bin\Debug\netcoreapp3.1\Resources\mineBlue.png
 C:\Users\xxx\Desktop\Gierka\GUI\bin\Debug\netcoreapp3.1\Resources\mineGreen.png
 C:\Users\xxx\Desktop\Gierka\GUI\bin\Debug\netcoreapp3.1\Resources\mineRed.png
@@ -138,3 +134,7 @@ C:\Users\xxx\Desktop\Gierka\GUI\bin\Debug\netcoreapp3.1\Resources\soldierYellow.
 C:\Users\xxx\Desktop\Gierka\GUI\bin\Debug\netcoreapp3.1\Resources\warriorPurple.png
 C:\Users\xxx\Desktop\Gierka\GUI\bin\Debug\netcoreapp3.1\Resources\next.png
 C:\Users\xxx\Desktop\Gierka\GUI\bin\Debug\netcoreapp3.1\Resources\redCircle.png
+C:\Users\xxx\Desktop\Gierka\GUI\bin\Debug\netcoreapp3.1\Resources\warriorYellow.png
+C:\Users\xxx\Desktop\Gierka\GUI\obj\Debug\netcoreapp3.1\Menu.g.cs
+C:\Users\xxx\Desktop\Gierka\GUI\obj\Debug\netcoreapp3.1\Menu.baml
+C:\Users\xxx\Desktop\Gierka\GUI\bin\Debug\netcoreapp3.1\Resources\field.png

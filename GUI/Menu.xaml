@@ -1,0 +1,32 @@
+﻿<Window x:Class="GUI.Menu"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GUI"
+        mc:Ignorable="d"
+        Title="Welcome" Height="600" Width="360" Background="Green" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Top">
+            <Image Source="/Resources/collect.png"  Width="80" Height="80"/>
+            <Image Margin="10,0,0,0" Source="/Resources/warriorBlue.png"  Width="80" Height="80"/>
+            <Image Margin="10,0,0,0" Source="/Resources/warriorRed.png"  Width="80" Height="80"/>
+            <Image Margin="10,0,0,0" Source="/Resources/Fight.png" Width="80" Height="80"/>
+        </StackPanel>
+
+        <Grid Margin="0,130,0,0">
+            <Button x:Name="newButton" Content="New Game" FontSize="30" FontWeight="Bold" Foreground="Green" Width="330" Height="100" VerticalAlignment="Top" HorizontalAlignment="Left" Background="LightSeaGreen" MouseEnter="new_MouseEnter" MouseLeave="new_MouseLeave" Click="newButton_Click"/>
+            <Button x:Name="continueButton"  Content="Continue Game" Margin="0,110,0,0" FontSize="30" FontWeight="Bold" Foreground="Green" VerticalAlignment="Top" HorizontalAlignment="Left"  Width="330" Height="100" Background="LightSeaGreen"  MouseEnter="continue_MouseEnter" MouseLeave="continue_MouseLeave" Click="continue_Click"/>
+            <Button x:Name="aboutButton"  Content="About game" Margin="0,220,0,0" FontSize="30" FontWeight="Bold" Foreground="Green" VerticalAlignment="Top" HorizontalAlignment="Left"  Width="330" Height="100" Background="LightSeaGreen"  MouseEnter="about_MouseEnter"  MouseLeave="about_MouseLeave" Click="about_Click"/>
+
+        </Grid>
+
+        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Bottom">
+            <Image Source="/Resources/armory.png" Width="80" Height="80"/>
+            <Image Margin="10,0,0,0" Source="/Resources/cannonYellow.png" Width="80" Height="80"/>
+            <Image Margin="10,0,0,0" Source="/Resources/cannonPurple.png"  Width="80" Height="80"/>
+            <Image Margin="10,0,0,0" Source="/Resources/barrack.png" Width="80" Height="80"/>
+        </StackPanel>
+        
+    </Grid>
+</Window>

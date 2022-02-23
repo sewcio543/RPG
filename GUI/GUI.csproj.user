@@ -9,10 +9,10 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="BarrackWindow.xaml.cs">
+    <Compile Update="End.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="End.xaml.cs">
+    <Compile Update="Menu.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="StartWindow.xaml.cs">
@@ -20,13 +20,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="BarrackWindow.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="End.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Menu.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="StartWindow.xaml">

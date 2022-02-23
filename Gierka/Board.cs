@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
+using System.Xml.Serialization;
 
 namespace Game
 {
+    [Serializable]
     public class Board
     {
         List<Building> buildings = new List<Building>();
@@ -16,6 +19,7 @@ namespace Game
         int width;
         bool[,] squares;
         Terrain[,] map;
+        Player turn;
 
         public Board() { }
         public Board(int width, int height)
@@ -49,6 +53,7 @@ namespace Game
             int x, y;
             int size = width * height;
             Random random = new Random();
+
             for (int i = 0; i < size * 0.1; i++)
             {
                 do
@@ -67,6 +72,16 @@ namespace Game
                     y = random.Next(1, Height - 1);
                 } while (!isAvailable(x, y));
                 Map[x, y] = new Water();
+            }
+
+            for (int i = 0; i < size * 0.05; i++)
+            {
+                do
+                {
+                    x = random.Next(1, Width - 1);
+                    y = random.Next(1, Height - 1);
+                } while (!isAvailable(x, y));
+                Map[x, y] = new Field();
             }
 
         }
@@ -148,10 +163,7 @@ namespace Game
 
         public bool canBuild(Character character, Building building, int x, int y)
         {
-            if (character.Role == typeOfCharacter.builder && character.Player.Charted[x, y])
-                return distance(character.X, character.Y, x, y) < 2 && isAvailable(x, y) && Map[x, y].build(building);
-            else
-                return false;
+            return character.Role == typeOfCharacter.builder && character.Player.Charted[x, y] && distance(character.X, character.Y, x, y) < 2 && isAvailable(x, y) && Map[x, y].build(building);
         }
 
         public bool canFight(Character character, int x, int y)
@@ -159,9 +171,9 @@ namespace Game
             if (!character.Player.Charted[x, y])
                 return false;
             if (character.Role == typeOfCharacter.wrecker)
-                return distance(character.X, character.Y, x, y) <= character.Range && Buildings.Find(building => building.X == x && building.Y == y && building.Player != character.Player) != null;
+                return distance(character.X, character.Y, x, y) <= character.Range && (Buildings.Find(building => building.X == x && building.Y == y && !building.Player.Equals(character.Player)) != null || Characters.Find(character_ => character_.X == x && character_.Y == y && !character_.Player.Equals(character.Player) && character_.Role == typeOfCharacter.wrecker ) != null);
             else if (character.Role == typeOfCharacter.fighter)
-                return distance(character.X, character.Y, x, y) <= character.Range && Characters.Find(character_ => character_.X == x && character_.Y == y && character_.Player != character.Player && character_.GetType() != typeof(Wanderer)) != null;
+                return distance(character.X, character.Y, x, y) <= character.Range && Characters.Find(character_ => character_.X == x && character_.Y == y && character_.Player != character.Player && character_.GetType() != typeof(Wanderer) && character_.Role == typeOfCharacter.fighter) != null;
             return false;
         }
 
@@ -175,7 +187,7 @@ namespace Game
 
         public bool canTrain(Building building, Character character, int x, int y)
         {
-            return isAvailable(x, y) && Map[x, y].Type == character.Terrain && distance(building.X, building.Y, x, y) < 2 && building.Player.Charted[x, y];
+            return isAvailable(x, y) && Map[x, y].Type == typeOfTerrain.plane && distance(building.X, building.Y, x, y) < 2 && building.Player.Charted[x, y];
         }
         public bool isAvailable(int x, int y)
         {
@@ -199,6 +211,7 @@ namespace Game
                     player.Base = new Base(player, 0, 0);
                     addBuilding(player.Base);
                     this.addCharacter(new Wanderer(player, 0, 1));
+                    Turn = player;
                 }
                 else if (Players.Count == 1)
                 {
@@ -318,12 +331,46 @@ namespace Game
 
         public void nextMove(Player player)
         {
-            foreach (Building building in Buildings.Where(a => a.Player.Name == player.Name && a.Exp != 0))
+            foreach (Building building in Buildings.Where(a => a.Player.Equals(player)))
                 player.Exp += building.Exp;
 
+            foreach (Building building in Buildings.Where(a => a.Player.Equals(player)))
+                player.Materials += building.Materials;
+
+
+            foreach (Player player_ in Players)
+            {
+                if (player_.Base.Health == 0)
+                {
+                    Characters.RemoveAll(a => a.Player.Equals(player_));
+                    Buildings.RemoveAll(a => a.Player.Equals(player_));
+                    break;
+                }
+            }
+
             player.nextLevel();
+            Turn = player;
+            serialize("board.bin");
             update();
         }
+        public void serialize(string path)
+        {
+            BinaryFormatter serializer = new BinaryFormatter();
+            using (FileStream stream = new FileStream(path, FileMode.Create))
+            {
+                serializer.Serialize(stream, this);
+            }
+        }
+
+        public static Board deserialize(string path)
+        {
+            BinaryFormatter serializer = new BinaryFormatter();
+            using (FileStream stream = new FileStream(path, FileMode.Open))
+            {
+                return serializer.Deserialize(stream) as Board;
+            }
+        }
+
         public bool[,] Squares { get => squares; set => squares = value; }
         public List<Player> Players { get => players; set => players = value; }
         public List<Building> Buildings { get => buildings; set => buildings = value; }
@@ -351,6 +398,8 @@ namespace Game
                     width = value;
             }
         }
+
         public Terrain[,] Map { get => map; set => map = value; }
+        public Player Turn { get => turn; set => turn = value; }
     }
 }

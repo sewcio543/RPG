@@ -5,13 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI"
         mc:Ignorable="d"
-        Title="End" Height="160"  Width="600" WindowStartupLocation="CenterScreen" Background="orange">
+        Title="End" Height="600"  Width="550" WindowStartupLocation="CenterScreen" Background="Green" ResizeMode="NoResize">
     <Grid>
-        <Label x:Name="winner" Margin="0,20,0,0" Width="500" Height="100" Background="DarkOrange" Content="Hello" VerticalAlignment="Top" FontSize="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <Button x:Name="nextGame" Margin="100,120,0,0" Visibility="Hidden" Content="Next Game" Width="200" Height="50" HorizontalAlignment="Left" Click="nextGame_Click" />
-        <Button x:Name="exit" Margin="300,120,0,0" Visibility="Hidden" Content="Exit" Width="200" Height="50" HorizontalAlignment="Left" Click="exit_Click"/>
+        <StackPanel HorizontalAlignment="Center" Margin="10,0,0,0" Orientation="Horizontal" VerticalAlignment="Top">
+            <Image Source="/Resources/collect.png"  Width="80" Height="80"/>
+            <Image Margin="10,0,0,0" Source="/Resources/archerBlue.png" Width="80" Height="80"/>
+            <Image Margin="10,0,0,0" Source="/Resources/warriorBlue.png"  Width="80" Height="80"/>
+            <Image Margin="10,0,0,0" Source="/Resources/warriorRed.png"  Width="80" Height="80"/>
+            <Image Margin="10,0,0,0" Source="/Resources/archerRed.png" Width="80" Height="80"/>
+            <Image Margin="10,0,0,0" Source="/Resources/Fight.png" Width="80" Height="80"/>
+        </StackPanel>
 
+        <Grid Margin="0,230,0,0">
+            <Button x:Name="nextButton" Content="Next Player" FontSize="30" FontWeight="Bold" Foreground="Green" Width="500" Height="100" VerticalAlignment="Top" HorizontalAlignment="Left" Background="LightSeaGreen" MouseEnter="nextButton_MouseEnter"  MouseLeave="nextButton_MouseLeave" Click="nextButton_Click"/>
+            <Button x:Name="exitButton"  Content="Exit" Margin="0,110,0,0" FontSize="30" FontWeight="Bold" Foreground="Green" VerticalAlignment="Top" HorizontalAlignment="Left"  Width="500" Height="100" Background="LightSeaGreen" MouseEnter="exit_MouseEnter" MouseLeave="exit_MouseLeave" Click="exit_Click"/>
 
+        </Grid>
 
+        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Bottom" >
+            <Image Source="/Resources/port.png" Width="80" Height="80"/>
+            <Image Margin="10,0,0,0" Source="/Resources/catapultYellow.png" Width="80" Height="80"/>
+            <Image Margin="10,0,0,0" Source="/Resources/cannonYellow.png" Width="80" Height="80"/>
+            <Image Margin="10,0,0,0" Source="/Resources/cannonPurple.png"  Width="80" Height="80"/>
+            <Image Margin="10,0,0,0" Source="/Resources/catapultPurple.png" Width="80" Height="80"/>
+            <Image Margin="10,0,0,0" Source="/Resources/mine.png" Width="80" Height="80"/>
+
+        </StackPanel>
+
+        <Label x:Name="winner" Margin="0,100,0,0" Width="500" Height="100" Background="LightSeaGreen" Content="Hello" VerticalAlignment="Top" FontSize="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+      
     </Grid>
 </Window>

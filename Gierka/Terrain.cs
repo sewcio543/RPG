@@ -4,7 +4,9 @@ using System.Text;
 
 namespace Game
 {
-    public enum typeOfTerrain { plane, water, mountain }
+    public enum typeOfTerrain { plane, water, mountain, field }
+
+    [Serializable]
     public class Terrain
     {
         string image;
@@ -17,14 +19,12 @@ namespace Game
         public bool build(Building building)
         {
             if (building.Terrain == Type)
-            {
-                Building = building;
                 return true;
-            }
             return false;
         }
 
     }
+    [Serializable]
     public class Mountain : Terrain
     {
         public Mountain()
@@ -32,8 +32,13 @@ namespace Game
             Image = $"/GUI;component/Resources/mountain.png";
             Type = typeOfTerrain.mountain;
         }
+        public override string ToString()
+        {
+            return "You can build Mine here";
+        }
     }
 
+    [Serializable]
     public class Water : Terrain
     {
         public Water()
@@ -41,13 +46,32 @@ namespace Game
             Image = $"/GUI;component/Resources/water.png";
             Type = typeOfTerrain.water;
         }
+        public override string ToString()
+        {
+            return "You can build Port here";
+        }
     }
+    [Serializable]
     public class Plane : Terrain
     {
         public Plane()
         {
             Image = "";
             Type = typeOfTerrain.plane;
+        }
+    }
+
+    [Serializable]
+    public class Field : Terrain
+    {
+        public Field()
+        {
+            Image = $"/GUI;component/Resources/field.png";
+            Type = typeOfTerrain.field;
+        }
+        public override string ToString()
+        {
+            return "You can build Farm here";
         }
     }
 }

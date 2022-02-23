@@ -4,6 +4,7 @@ using System.Text;
 
 namespace Game
 {
+    [Serializable]
     public class Wanderer : Character
     {
         public Wanderer(Player player) : base(player)
@@ -11,10 +12,8 @@ namespace Game
             Type = "wanderer";
             MaxHealth = 5;
             Health = MaxHealth;
-            Damage = 0;
             Leap = 3;
             Image = $"/GUI;component/Resources/{Type}{player.Color}.png";
-            MaterialsNeeded = 0;
             Range = 2;
             Role = typeOfCharacter.builder;
 
@@ -26,17 +25,17 @@ namespace Game
             Y = y;
         }
     }
-
+    [Serializable]
 
     public class Warrior : Character
     {
         public Warrior(Player player) : base(player)
         {
-            MaxHealth = 20;
+            MaxHealth = 10;
             Health = MaxHealth;
             Damage = 5;
             Leap = 2;
-            MaterialsNeeded = 10;
+            MaterialsNeeded = 100;
             Type = "warrior";
             Image = $"/GUI;component/Resources/{Type}{player.Color}.png";
             Range = 2;
@@ -51,19 +50,19 @@ namespace Game
         }
 
     }
-
+    [Serializable]
     public class Soldier : Character
     {
         public Soldier(Player player) : base(player)
         {
             MaxHealth = 20;
             Health = MaxHealth;
-            Damage = 5;
+            Damage = 8;
             Leap = 2;
-            MaterialsNeeded = 10;
+            MaterialsNeeded = 500;
             Type = "soldier";
             Image = $"/GUI;component/Resources/{Type}{player.Color}.png";
-            Range = 2;
+            Range = 4;
             Role = typeOfCharacter.fighter;
 
         }
@@ -75,15 +74,16 @@ namespace Game
         }
 
     }
+    [Serializable]
     public class Archer : Character
     {
         public Archer(Player player) : base(player)
         {
-            MaxHealth = 5;
+            MaxHealth = 8;
             Health = MaxHealth;
-            Damage = 5;
+            Damage = 3;
             Leap = 3;
-            MaterialsNeeded = 20;
+            MaterialsNeeded = 200;
             Type = "archer";
             Image = $"/GUI;component/Resources/{Type}{player.Color}.png";
             Range = 4;
@@ -99,16 +99,16 @@ namespace Game
 
        
     }
-
+    [Serializable]
     public class Rider : Character
     {
         public Rider(Player player) : base(player)
         {
-            MaxHealth = 5;
+            MaxHealth = 10;
             Health = MaxHealth;
-            Damage = 7;
+            Damage = 5;
             Leap = 6;
-            MaterialsNeeded = 30;
+            MaterialsNeeded = 300;
             Type = "rider";
             Image = $"/GUI;component/Resources/{Type}{player.Color}.png";
             Range = 2;
@@ -122,20 +122,20 @@ namespace Game
         }
     }
 
-
+    [Serializable]
     public class BatteringRam : Character
     {
         public BatteringRam(Player player) : base(player)
         {
-            MaxHealth = 5;
+            MaxHealth = 200;
             Health = MaxHealth;
-            Leap = 3;
-            MaterialsNeeded = 50;
+            Leap = 1;
+            MaterialsNeeded = 300;
+            Damage = 50;
             Type = "batteringRam";
             Image = $"/GUI;component/Resources/{Type}{player.Color}.png";
             Role = typeOfCharacter.wrecker;
-            Aid = 10;
-            Range = 5;
+            Range = 2;
         }
 
         public BatteringRam(Player player, int x, int y) : this(player)
@@ -144,21 +144,20 @@ namespace Game
             Y = y;
         }
     }
-
+    [Serializable]
     public class Catapult : Character
     {
         public Catapult(Player player) : base(player)
         {
-            MaxHealth = 5;
+            MaxHealth = 100;
             Health = MaxHealth;
             Leap = 3;
-            MaterialsNeeded = 0;
+            MaterialsNeeded = 400;
             Type = "catapult";
             Image = $"/GUI;component/Resources/{Type}{player.Color}.png";
             Role = typeOfCharacter.wrecker;
-            Aid = 10;
-            Range = 5;
-            Damage = 100;
+            Range = 4;
+            Damage = 80;
         }
 
         public Catapult(Player player, int x, int y) : this(player)
@@ -168,42 +167,20 @@ namespace Game
         }
     }
 
-    public class Miner : Character
-    {
-        public Miner(Player player) : base(player)
-        {
-            MaxHealth = 5;
-            Health = MaxHealth;
-            Leap = 3;
-            MaterialsNeeded = 100;
-            Type = "miner";
-            Image = $"/GUI;component/Resources/{Type}{player.Color}.png";
-            Role = typeOfCharacter.builder;
-            Aid = 10;
-            Range = 5;
-        }
-
-        public Miner(Player player, int x, int y) : this(player)
-        {
-            X = x;
-            Y = y;
-        }
-    }
-
+    [Serializable]
     public class Cannon : Character
     {
         public Cannon(Player player) : base(player)
         {
-            MaxHealth = 5;
+            MaxHealth = 300;
             Health = MaxHealth;
             Leap = 3;
-            MaterialsNeeded = 0;
+            MaterialsNeeded = 700;
             Type = "cannon";
             Image = $"/GUI;component/Resources/{Type}{player.Color}.png";
             Role = typeOfCharacter.wrecker;
-            Aid = 10;
-            Damage = 100;
-            Range = 10;
+            Damage = 120;
+            Range = 5;
         }
 
         public Cannon(Player player, int x, int y) : this(player)

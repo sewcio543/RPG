@@ -4,6 +4,7 @@ using System.Text;
 
 namespace Game
 {
+    [Serializable]
     public abstract class Object
     {
         int materials;
@@ -28,10 +29,10 @@ namespace Game
 
         public override string ToString()
         {
-            return $"{this.GetType().ToString()[5..]}\nLocation: {X}-{Y}\n";
+            return $"{this.GetType().ToString()[5..]}";
         }
     }
-
+    [Serializable]
     public class Tree : Object
     {
         public Tree(int x, int y) : base(x, y)
@@ -41,7 +42,7 @@ namespace Game
             Image = $"/GUI;component/Resources/{Type}.png";
         }
     }
-
+    [Serializable]
     public class Stone : Object
     {
         public Stone (int x, int y) : base(x, y)
@@ -51,7 +52,7 @@ namespace Game
             Image = $"/GUI;component/Resources/{Type}.png";
         }
     }
-
+    [Serializable]
     public class Gold : Object
     {
         public Gold(int x, int y) : base(x, y)

@@ -36,7 +36,6 @@ namespace GUI
         Dictionary<Panel, Thickness> panels;
         ArrayList labels, images, buttons;
 
-
         public MainWindow(Board board_)
         {
             InitializeComponent();
@@ -55,8 +54,8 @@ namespace GUI
             this.SizeChanged += WindowSizeChanged;
             this.WindowState = WindowState.Maximized;
 
-            player = board.Players[0];
-            place(player);
+            player = board.Turn;
+            setPlayer();
 
             barrackButton.ToolTip = new Barrack(player).Tip();
             houseButton.ToolTip = new House(player).Tip();
@@ -73,10 +72,6 @@ namespace GUI
             batteringRam.ToolTip = new BatteringRam(player).Tip();
             catapult.ToolTip = new BatteringRam(player).Tip();
             cannon.ToolTip = new BatteringRam(player).Tip();
-
-            playerName.Content = player.Name;
-            playerName.Foreground = new SolidColorBrush(Color.FromRgb((byte)0, (byte)70, (byte)204));
-
         }
 
         public void t(double x)
@@ -138,55 +133,84 @@ namespace GUI
 
         public void nextPlayer()
         {
-            if (board.Players.FindIndex(a => a.Name == player.Name) == board.Players.Count - 1)
-            {
-                player = board.Players[0];
-                playerName.Foreground = new SolidColorBrush(Color.FromRgb((byte)0, (byte)70, (byte)204));
-            }
-            else if (board.Players.FindIndex(a => a.Name == player.Name) == 0)
-            {
-                player = board.Players[1];
-                playerName.Foreground = Brushes.Red;
-            }
-            else if (board.Players.FindIndex(a => a.Name == player.Name) == 1)
-            {
-                player = board.Players[2];
-                playerName.Foreground = new SolidColorBrush(Color.FromRgb((byte)204, (byte)180, (byte)0));
-            }
-            else
-            {
-                player = board.Players[3];
-                playerName.Foreground = Brushes.Purple;
-            }
-
             foreach (Player player_ in board.Players)
             {
                 if (player_.Base.Health == 0)
                 {
+                    board.Characters.RemoveAll(a => a.Player.Equals(player_));
+                    board.Buildings.RemoveAll(a => a.Player.Equals(player_));
                     board.Players.Remove(player_);
+
                     if (board.Players.Count == 1)
                     {
-                        End endWindow = new End(player_, board, true);
+                        End endWindow = new End(player_, true);
                         bool? response = endWindow.ShowDialog();
-                        Application.Current.Shutdown();
+                        if (response == true)
+                        {
+                            StartWindow window = new StartWindow();
+                            window.Show();
+                            this.Close();
+                        }
                     }
                     else
                     {
-                        End endWindow = new End(player_, board);
-                        bool? response = endWindow.ShowDialog();
+                        End endWindow = new End(player_);
+                        endWindow.ShowDialog();
                     }
                     break;
                 }
             }
-            board.nextMove(player);
+
+            if (board.Players.Count > 1)
+            {
+                if (board.Players.FindIndex(a => a.Equals(player)) == board.Players.Count - 1)
+                    player = board.Players[0];
+                else
+                    player = board.Players[board.Players.FindIndex(a => a.Equals(player)) + 1];
+
+
+                board.nextMove(player);
+                setPlayer();
+                chosenChanged();
+            }
+        }
+
+        public void setPlayer()
+        {
             levelBar.ToolTip = $"{player.Exp}/{player.Level * 100}";
             levelBar.Value = player.Exp;
             levelBar.Maximum = player.Level * 100;
             levelText.Content = Convert.ToString(player.Level);
             matsLabel.Content = player.Materials;
+
+            if (player.Level >= 2)
+                barrackButton.IsEnabled = true;
+            if (player.Level >= 3)
+                houseButton.IsEnabled = true;
+            if (player.Level >= 4)
+                armoryButton.IsEnabled = true;
+            if (player.Level >= 5)
+                portButton.IsEnabled = true;
+            if (player.Level >= 6)
+                mineButton.IsEnabled = true;
+            if (player.Level >= 8)
+                farmButton.IsEnabled = true;
+
             place(player);
             playerName.Content = player.Name;
-            chosenChanged();
+
+            if (player.Color == "Blue")
+                playerName.Foreground = new SolidColorBrush(Color.FromRgb((byte)0, (byte)70, (byte)204));
+
+            else if (player.Color == "Red")
+                playerName.Foreground = Brushes.Red;
+
+            else if (player.Color == "Yellow")
+                playerName.Foreground = new SolidColorBrush(Color.FromRgb((byte)204, (byte)180, (byte)0));
+
+            else
+                playerName.Foreground = Brushes.Purple;
+
         }
 
         public void layout()
@@ -216,8 +240,19 @@ namespace GUI
             y = (int)Math.Floor((position.Y - upperGrid.Height) / squareHeight);
         }
 
-        public void setImg(int i, int j, string url, string type = "", bool button_ = true, bool border = false)
+        public void setImg(int i, int j, string url, string type = "", bool button_ = true, bool border_ = false, string color = "")
         {
+            Border border = new Border();
+            border.BorderThickness = new Thickness(2);
+            if (color == "red")
+                border.BorderBrush = Brushes.Red;
+            if (color == "green")
+                border.BorderBrush = Brushes.LawnGreen;
+            if (color == "black")
+                border.BorderBrush = Brushes.Black;
+            if (!border_)
+                border.BorderThickness = new Thickness(0);
+
             StackPanel stackPanel = new StackPanel();
             stackPanel.VerticalAlignment = VerticalAlignment.Center;
             stackPanel.HorizontalAlignment = HorizontalAlignment.Center;
@@ -226,22 +261,19 @@ namespace GUI
             image.Height = squareHeight;
 
             ProgressBar pb = new ProgressBar();
+            pb.Background = Brushes.Green;
             pb.Width = squareWidth;
             pb.Height = 0.2 * squareHeight;
             pb.Maximum = 100;
             pb.Value = 0;
 
+            Button button = new Button();
+            button.Background = Brushes.Transparent;
+            button.Width = squareWidth;
+            button.Height = squareHeight;
+
             if (button_)
             {
-                Button button = new Button();
-                button.Background = Brushes.Transparent;
-                if (!border)
-                    button.BorderThickness = new Thickness(0);
-                else
-                {
-                    button.BorderThickness = new Thickness(3);
-                    button.BorderBrush = Brushes.Black;
-                }
                 if (type == "character")
                     button.Click += new RoutedEventHandler(characterClick);
 
@@ -251,24 +283,23 @@ namespace GUI
                 if (type == "armory")
                     button.Click += new RoutedEventHandler(armoryClick);
 
-                button.Width = squareWidth;
-                button.Height = squareHeight;
+                border.Child = button;
                 button.Content = stackPanel;
-
-                mainGrid.Children.Add(button);
-                Grid.SetColumn(button, i);
-                Grid.SetRow(button, j);
+                mainGrid.Children.Add(border);
+                Grid.SetColumn(border, i);
+                Grid.SetRow(border, j);
             }
             else
             {
-                mainGrid.Children.Add(stackPanel);
-                Grid.SetColumn(stackPanel, i);
-                Grid.SetRow(stackPanel, j);
+                border.Child = stackPanel;
+                mainGrid.Children.Add(border);
+                Grid.SetColumn(border, i);
+                Grid.SetRow(border, j);
             }
             if (type == "unknown")
                 stackPanel.Background = Brushes.DarkGray;
 
-            else if (board.getObjectFromSquare(i, j) != null && board.getObjectFromSquare(i,j).GetType().IsSubclassOf(typeof(Character)))
+            else if (board.getObjectFromSquare(i, j) != null && board.getObjectFromSquare(i, j).GetType().IsSubclassOf(typeof(Character)))
             {
                 pb.Maximum = board.Characters.Find(a => a.X == i && a.Y == j).MaxHealth;
                 pb.Value = board.Characters.Find(a => a.X == i && a.Y == j).Health;
@@ -286,21 +317,20 @@ namespace GUI
                 image.Height = 0.8 * squareHeight;
             }
 
-            if (type == "base")
-                pb.Maximum = 10 * player.Level;
-
-          
             if (pb.Value / pb.Maximum > 0.8)
-                pb.Background = Brushes.Green;
+                pb.Foreground = Brushes.LawnGreen;
             else if (pb.Value / pb.Maximum > 0.5)
-                pb.Background = Brushes.ForestGreen;
+                pb.Foreground = Brushes.Yellow;
             else if (pb.Value / pb.Maximum > 0.2)
-                pb.Background = Brushes.Orange;
+                pb.Foreground = Brushes.Orange;
             else
-                pb.Background = Brushes.Red;
+                pb.Foreground = Brushes.Red;
 
             if (board.getObjectFromSquare(i, j) != null)
                 image.ToolTip = board.getObjectFromSquare(i, j).ToString();
+            else if(board.Map[i,j].Type != typeOfTerrain.plane)
+                image.ToolTip = board.Map[i,j].ToString();
+
 
             stackPanel.Children.Add(image);
             BitmapImage bitmapImage = new BitmapImage(new Uri(url, UriKind.Relative));
@@ -325,7 +355,7 @@ namespace GUI
             foreach (Game.Object obj in board.Objects)
             {
                 if (player.Charted[obj.X, obj.Y])
-                    setImg(obj.X, obj.Y, obj.Image);
+                    setImg(obj.X, obj.Y, obj.Image, "", false);
             }
 
             foreach (Building building in board.Buildings)
@@ -344,7 +374,7 @@ namespace GUI
                 if (player.Charted[character.X, character.Y])
                 {
                     if (chosenCharacter != null && character.Equals(chosenCharacter))
-                        setImg(chosenCharacter.X, chosenCharacter.Y, chosenCharacter.Image, "character", true, true);
+                        setImg(chosenCharacter.X, chosenCharacter.Y, chosenCharacter.Image, "character", true, true, "black");
                     else if (character.Player.Equals(player))
                         setImg(character.X, character.Y, character.Image, "character");
                     else
@@ -439,29 +469,31 @@ namespace GUI
             place(player);
             Point position = Mouse.GetPosition(this);
 
+
             if (position.X < barrackButton.PointToScreen(new Point(0d, 0d)).X + barrackButton.Width)
                 chosenBuilding = new Barrack(player);
 
             else if (position.X < houseButton.PointToScreen(new Point(0d, 0d)).X + houseButton.Width)
                 chosenBuilding = new House(player);
 
-            else if (position.X < farmButton.PointToScreen(new Point(0d, 0d)).X + farmButton.Width)
-                chosenBuilding = new House(player);
+            else if (position.X < armoryButton.PointToScreen(new Point(0d, 0d)).X + armoryButton.Width)
+                chosenBuilding = new Armory(player);
 
             else if (position.X < portButton.PointToScreen(new Point(0d, 0d)).X + portButton.Width)
                 chosenBuilding = new Port(player);
 
             else if (position.X < mineButton.PointToScreen(new Point(0d, 0d)).X + mineButton.Width)
                 chosenBuilding = new Mine(player);
+
             else
-                chosenBuilding = new Armory(player);
+                chosenBuilding = new Farm(player);
 
             mainGrid.MouseDown += new MouseButtonEventHandler(build);
 
             for (int i = 0; i < board.Squares.GetLength(0); i++)
                 for (int j = 0; j < board.Squares.GetLength(1); j++)
                     if (board.canBuild(chosenCharacter, chosenBuilding, i, j))
-                        setImg(i, j, $"/GUI;component/Resources/greenCircle.png", "", false);
+                        setImg(i, j, $"", "", false, true, "green");
 
         }
 
@@ -490,17 +522,18 @@ namespace GUI
             barrackMenu.Visibility = Visibility.Visible;
             getMouseLocation();
             chosenBuilding = board.getObjectFromSquare(x, y) as Barrack;
-            setImg(chosenBuilding.X, chosenBuilding.Y, chosenBuilding.Image, chosenBuilding.Type, true, true);
+            setImg(chosenBuilding.X, chosenBuilding.Y, chosenBuilding.Image, chosenBuilding.Type, true, true, "black");
 
         }
 
         private void armoryClick(object sender, RoutedEventArgs e)
         {
+
             chosenChanged();
             armoryMenu.Visibility = Visibility.Visible;
             getMouseLocation();
             chosenBuilding = board.getObjectFromSquare(x, y) as Armory;
-            setImg(chosenBuilding.X, chosenBuilding.Y, chosenBuilding.Image, chosenBuilding.Type, true, true);
+            setImg(chosenBuilding.X, chosenBuilding.Y, chosenBuilding.Image, chosenBuilding.Type, true, true, "black");
         }
 
         public void characterClick(object sender, RoutedEventArgs r)
@@ -527,23 +560,34 @@ namespace GUI
             getMouseLocation();
             if (board.canTrain(chosenBuilding, chosenCharacter, x, y))
             {
-                Title = "DDD";
                 chosenCharacter.X = x;
                 chosenCharacter.Y = y;
-                try { board.addCharacter(chosenCharacter); }
+                try
+                {
+                    board.addCharacter(chosenCharacter);
+
+                    for (int i = 0; i < board.Squares.GetLength(0); i++)
+                        for (int j = 0; j < board.Squares.GetLength(1); j++)
+                            if (board.distance(x, y, i, j) < 2)
+                                player.Charted[i, j] = true;
+
+                    mainGrid.MouseDown -= new MouseButtonEventHandler(train);
+                    chosenCharacter = null;
+
+                }
                 catch (Exception error)
                 { MessageBox.Show(error.Message, "Impossible", MessageBoxButton.OK, MessageBoxImage.Exclamation); }
-                chosenChanged();
+
                 matsLabel.Content = Convert.ToString(player.Materials);
                 mainGrid.MouseDown -= new MouseButtonEventHandler(train);
-                barrackMenu.Visibility = Visibility.Hidden;
-
-                for (int i = 0; i < board.Squares.GetLength(0); i++)
-                    for (int j = 0; j < board.Squares.GetLength(1); j++)
-                        if (board.distance(x,y, i, j) < 2)
-                            player.Charted[i, j] = true;
                 place(player);
             }
+            else
+            {
+                place(player);
+
+            }
+            setImg(chosenBuilding.X, chosenBuilding.Y, chosenBuilding.Image, chosenBuilding.Type, true, true, "black");
         }
 
         public void build(object sender, MouseEventArgs e)
@@ -559,6 +603,11 @@ namespace GUI
                 {
                     board.addBuilding(chosenBuilding);
                     board.Map[x, y] = new Plane();
+                    for (int i = 0; i < board.Squares.GetLength(0); i++)
+                        for (int j = 0; j < board.Squares.GetLength(1); j++)
+                            if (board.distance(x, y, i, j) < 2)
+                                player.Charted[i, j] = true;
+
                 }
                 catch (Exception error)
                 { MessageBox.Show(error.Message, "Impossible", MessageBoxButton.OK, MessageBoxImage.Exclamation); }
@@ -566,31 +615,25 @@ namespace GUI
                 chosenBuilding = null;
                 matsLabel.Content = Convert.ToString(player.Materials);
                 mainGrid.MouseDown -= new MouseButtonEventHandler(build);
-                buildMenu.Visibility = Visibility.Hidden;
-                place(player);
             }
+            place(player);
         }
 
         public void fight(object sender, MouseEventArgs e)
         {
             getMouseLocation();
-            if (board.getObjectFromSquare(x, y).GetType().IsSubclassOf(typeof(Building)))
+
+            if (board.canFight(chosenCharacter, x, y) && board.getObjectFromSquare(x, y).GetType().IsSubclassOf(typeof(Building)))
             {
-                if (board.canFight(chosenCharacter, x, y))
-                {
-                    chosenCharacter.Strike(board.getObjectFromSquare(x, y) as Building);
-                    mainGrid.MouseDown -= new MouseButtonEventHandler(fight);
-                    nextPlayer();
-                }
+                chosenCharacter.Strike(board.getObjectFromSquare(x, y) as Building);
+                mainGrid.MouseDown -= new MouseButtonEventHandler(fight);
+                nextPlayer();
             }
-            else if (board.getObjectFromSquare(x, y).GetType().IsSubclassOf(typeof(Character)))
+            else if (board.canFight(chosenCharacter, x, y) && board.getObjectFromSquare(x, y).GetType().IsSubclassOf(typeof(Character)))
             {
-                if (board.canFight(chosenCharacter, x, y))
-                {
-                    chosenCharacter.Strike(board.getObjectFromSquare(x, y) as Character);
-                    mainGrid.MouseDown -= new MouseButtonEventHandler(fight);
-                    nextPlayer();
-                }
+                chosenCharacter.Strike(board.getObjectFromSquare(x, y) as Character);
+                mainGrid.MouseDown -= new MouseButtonEventHandler(fight);
+                nextPlayer();
             }
             else
                 place(player);
@@ -634,7 +677,7 @@ namespace GUI
             for (int i = 0; i < board.Squares.GetLength(0); i++)
                 for (int j = 0; j < board.Squares.GetLength(1); j++)
                     if (board.canFight(chosenCharacter, i, j))
-                        setImg(i, j, "/GUI;component/Resources/redSquare.png", "", false);
+                        setImg(i, j, "", "", false, true, "red");
 
             mainGrid.MouseDown += new MouseButtonEventHandler(fight);
         }
@@ -645,7 +688,7 @@ namespace GUI
             for (int i = 0; i < board.Squares.GetLength(0); i++)
                 for (int j = 0; j < board.Squares.GetLength(1); j++)
                     if (board.canCollect(chosenCharacter, i, j))
-                        setImg(i, j, "/GUI;component/Resources/greenSquare.png", "", false);
+                        setImg(i, j, "", "", false, true, "green");
 
             mainGrid.MouseDown += new MouseButtonEventHandler(collect);
 

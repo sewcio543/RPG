@@ -6,6 +6,7 @@ using System.Text;
 
 namespace Game
 {
+    [Serializable]
     public class Player : IComparable<Player>, IEquatable<Player>
     {
         int level = 1;
@@ -44,6 +45,7 @@ namespace Game
                 this.Level++;
                 this.Base.Exp += 20;
                 this.Base.Health += 10;
+                Base.MaxHealth += 10; 
                 return true;
             }
             return false;
@@ -52,7 +54,7 @@ namespace Game
 
         public override string ToString()
         {
-            return $"Name: {Name}";
+            return $"Name: {Name}\nLevel: {Level}";
         }
 
 
