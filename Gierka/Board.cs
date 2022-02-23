@@ -350,7 +350,7 @@ namespace Game
 
             player.nextLevel();
             Turn = player;
-            serialize("board.bin");
+            //serialize("board.bin");
             update();
         }
         public void serialize(string path)

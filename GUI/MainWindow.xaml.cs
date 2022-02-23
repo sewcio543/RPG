@@ -161,18 +161,18 @@ namespace GUI
                 }
             }
 
-            if (board.Players.Count > 1)
-            {
-                if (board.Players.FindIndex(a => a.Equals(player)) == board.Players.Count - 1)
-                    player = board.Players[0];
-                else
-                    player = board.Players[board.Players.FindIndex(a => a.Equals(player)) + 1];
+
+            if (board.Players.FindIndex(a => a.Equals(player)) == board.Players.Count - 1)
+                player = board.Players[0];
+            else
+                player = board.Players[board.Players.FindIndex(a => a.Equals(player)) + 1];
 
 
-                board.nextMove(player);
-                setPlayer();
-                chosenChanged();
-            }
+            board.nextMove(player);
+            board.serialize("board.bin");
+            setPlayer();
+            chosenChanged();
+
         }
 
         public void setPlayer()
@@ -328,8 +328,8 @@ namespace GUI
 
             if (board.getObjectFromSquare(i, j) != null)
                 image.ToolTip = board.getObjectFromSquare(i, j).ToString();
-            else if(board.Map[i,j].Type != typeOfTerrain.plane)
-                image.ToolTip = board.Map[i,j].ToString();
+            else if (board.Map[i, j].Type != typeOfTerrain.plane)
+                image.ToolTip = board.Map[i, j].ToString();
 
 
             stackPanel.Children.Add(image);
