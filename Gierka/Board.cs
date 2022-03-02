@@ -8,6 +8,7 @@ using System.Xml.Serialization;
 
 namespace Game
 {
+    // class board contains all the characters, buildings, players and map of the game
     [Serializable]
     public class Board
     {
@@ -15,12 +16,17 @@ namespace Game
         List<Character> characters = new List<Character>();
         List<Object> objects = new List<Object>();
         List<Player> players = new List<Player>();
+        // size of the board
         int height;
         int width;
+        // 2-D board
         bool[,] squares;
+        // map with different terrains of the same size as board
         Terrain[,] map;
+        // player, who has move
         Player turn;
 
+        // constructors
         public Board() { }
         public Board(int width, int height)
         {
@@ -28,10 +34,13 @@ namespace Game
             Height = height;
             squares = new bool[Width, Height];
             map = new Terrain[Width, Height];
+            // generating 10% of map as objects
             generateObjects(width * height / 10);
+            // randomly generated terrain
             generateMap();
         }
 
+        // method returns object placed on specific square of the board
         public object getObjectFromSquare(int x, int y)
         {
             if (Characters.Find(a => a.X == x && a.Y == y) != null)
@@ -44,6 +53,8 @@ namespace Game
 
         }
 
+        // map is generated at random, with proportions:
+        // plane: 0.75, mountains: 0.1, water: 0.1, field: 0.05
         public void generateMap()
         {
             for (int i = 0; i < Map.GetLength(0); i++)
@@ -85,6 +96,8 @@ namespace Game
             }
 
         }
+
+        // objects are generated at random, available squares
         public void generateObjects(int amount)
         {
             int x, y, number;
@@ -110,6 +123,7 @@ namespace Game
             }
         }
 
+        // text format of the board
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
@@ -139,16 +153,18 @@ namespace Game
             return sb.ToString();
         }
 
-
+        // move method, changes scharacter's co-ordinates if it's a legal move
         public void move(Character character, int x, int y)
         {
             if (canMove(character, x, y))
             {
+
                 Squares[character.X, character.Y] = false;
                 character.X = x;
                 character.Y = y;
                 Squares[x, y] = true;
 
+                // new land can be discovered around a character
                 for (int i = 0; i < Squares.GetLength(0); i++)
                     for (int j = 0; j < Squares.GetLength(1); j++)
                         if (distance(character.X, character.Y, i, j) < 2)
@@ -156,16 +172,19 @@ namespace Game
             }
         }
 
+        // method checks every relevant condition and returns whether the character can move to the specific square
         public bool canMove(Character character, int x, int y)
         {
             return distance(character.X, character.Y, x, y) <= character.Leap && isAvailable(x, y) && Map[x, y].Type == typeOfTerrain.plane && character.Player.Charted[x, y];
         }
 
+        // method checks every relavant condition and returns whether the character can build the building in the specific square
         public bool canBuild(Character character, Building building, int x, int y)
         {
             return character.Role == typeOfCharacter.builder && character.Player.Charted[x, y] && distance(character.X, character.Y, x, y) < 2 && isAvailable(x, y) && Map[x, y].build(building);
         }
 
+        // method checks every relavant condition and returns whether the character can fight with obejct in the specific square
         public bool canFight(Character character, int x, int y)
         {
             if (!character.Player.Charted[x, y])
@@ -177,6 +196,7 @@ namespace Game
             return false;
         }
 
+        // method checks every relavant condition and returns whether the character can collect object in the specific square
         public bool canCollect(Character character, int x, int y)
         {
             if (character.Role == typeOfCharacter.builder && character.Player.Charted[x, y])
@@ -185,10 +205,13 @@ namespace Game
                 return false;
         }
 
+        // method checks every relavant condition and returns whether the building can place the character in the specific square
         public bool canTrain(Building building, Character character, int x, int y)
         {
             return isAvailable(x, y) && Map[x, y].Type == typeOfTerrain.plane && distance(building.X, building.Y, x, y) < 2 && building.Player.Charted[x, y];
         }
+
+        // methods returns whether square of the board with these co-ordinates is available
         public bool isAvailable(int x, int y)
         {
             if (x > Width || x < 0 || y > Height || y < 0)
@@ -196,10 +219,14 @@ namespace Game
             return !this.Squares[x, y];
         }
 
+        // adds player to the board
+        // at the beginning player posses base and one wanderer
         public void addPlayer(Player player)
         {
+            // if player of this name is not yet added
             if (Players.Where(a => a.Equals(player)).ToList().Count == 0)
             {
+                // first player, left-upper corner, blue color
                 if (Players.Count == 0)
                 {
                     this.Players.Add(player);
@@ -213,6 +240,7 @@ namespace Game
                     this.addCharacter(new Wanderer(player, 0, 1));
                     Turn = player;
                 }
+                // second player, right-bottom corner, red color
                 else if (Players.Count == 1)
                 {
                     this.Players.Add(player);
@@ -225,6 +253,7 @@ namespace Game
                     addBuilding(player.Base);
                     this.addCharacter(new Wanderer(player, Width - 1, Height - 2));
                 }
+                // third player, left-buttom corner, yellow color
                 else if (Players.Count == 2)
                 {
                     this.Players.Add(player);
@@ -237,6 +266,7 @@ namespace Game
                     addBuilding(player.Base);
                     this.addCharacter(new Wanderer(player, 0, Height - 2));
                 }
+                // first player, right-upper corner,purple color
                 else if (Players.Count == 3)
                 {
                     this.Players.Add(player);
@@ -257,6 +287,7 @@ namespace Game
                 throw new Exception("player's already joined");
         }
 
+        // methods upadates list of buildings, characters and objects and removes dead characters, destroyed buildings and collected objects
         public void update()
         {
             foreach (Building building in Buildings.Where(a => a.Health == 0))
@@ -288,6 +319,7 @@ namespace Game
                 writer.Write(ToString());
 
         }
+
         public void addObject(Object object_)
         {
             if (isAvailable(object_.X, object_.Y))
@@ -297,6 +329,8 @@ namespace Game
             }
         }
 
+        // methods adds buildng to the board if all the conditions are fulfilled
+        // player's level >= building level, player has enough materials the building can be place on board at its co-ordinates
         public void addBuilding(Building building)
         {
             if (isAvailable(building.X, building.Y))
@@ -314,12 +348,13 @@ namespace Game
             }
         }
 
+        // if player has enough materials, methods adds character to the board
         public void addCharacter(Character character)
         {
             if (isAvailable(character.X, character.Y))
             {
                 if (character.MaterialsNeeded > character.Player.Materials)
-                    throw new Exception($"Minimum meterials to build {character.Type} is {character.MaterialsNeeded}");
+                    throw new Exception($"Minimum meterials to build this character is {character.MaterialsNeeded}");
 
                 this.Characters.Add(character);
                 character.Player.Materials -= character.MaterialsNeeded;
@@ -327,8 +362,10 @@ namespace Game
             }
         }
 
+        // returns distance between two squares
         public double distance(int x1, int y1, int x2, int y2) { return Math.Sqrt(Math.Pow((x1 - x2), 2) + Math.Pow((y1 - y2), 2)); }
 
+        // methods adds due materials and exp to the player and initialize his turn
         public void nextMove(Player player)
         {
             foreach (Building building in Buildings.Where(a => a.Player.Equals(player)))
@@ -337,7 +374,7 @@ namespace Game
             foreach (Building building in Buildings.Where(a => a.Player.Equals(player)))
                 player.Materials += building.Materials;
 
-
+            // removing player that lose
             foreach (Player player_ in Players)
             {
                 if (player_.Base.Health == 0)
@@ -353,6 +390,8 @@ namespace Game
             //serialize("board.bin");
             update();
         }
+
+        // serialization to bin
         public void serialize(string path)
         {
             BinaryFormatter serializer = new BinaryFormatter();
@@ -362,6 +401,7 @@ namespace Game
             }
         }
 
+        // deserialization from bin
         public static Board deserialize(string path)
         {
             BinaryFormatter serializer = new BinaryFormatter();
@@ -371,6 +411,7 @@ namespace Game
             }
         }
 
+        // properties
         public bool[,] Squares { get => squares; set => squares = value; }
         public List<Player> Players { get => players; set => players = value; }
         public List<Building> Buildings { get => buildings; set => buildings = value; }

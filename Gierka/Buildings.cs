@@ -4,6 +4,7 @@ using System.Text;
 
 namespace Game
 {
+    // child classes of Building's class, different buildings
     [Serializable]
     public class House : Building
     {

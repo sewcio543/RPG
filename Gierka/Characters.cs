@@ -4,16 +4,17 @@ using System.Text;
 
 namespace Game
 {
-    [Serializable]
+    // child classes of Character's class, different characters
+
+    [Serializable]  
     public class Wanderer : Character
     {
         public Wanderer(Player player) : base(player)
         {
-            Type = "wanderer";
             MaxHealth = 5;
             Health = MaxHealth;
             Leap = 3;
-            Image = $"/GUI;component/Resources/{Type}{player.Color}.png";
+            Image = $"/GUI;component/Resources/wanderer{player.Color}.png";
             Range = 2;
             Role = typeOfCharacter.builder;
 
@@ -36,8 +37,7 @@ namespace Game
             Damage = 5;
             Leap = 2;
             MaterialsNeeded = 100;
-            Type = "warrior";
-            Image = $"/GUI;component/Resources/{Type}{player.Color}.png";
+            Image = $"/GUI;component/Resources/warrior{player.Color}.png";
             Range = 2;
             Role = typeOfCharacter.fighter;
 
@@ -60,8 +60,7 @@ namespace Game
             Damage = 8;
             Leap = 2;
             MaterialsNeeded = 500;
-            Type = "soldier";
-            Image = $"/GUI;component/Resources/{Type}{player.Color}.png";
+            Image = $"/GUI;component/Resources/soldier{player.Color}.png";
             Range = 4;
             Role = typeOfCharacter.fighter;
 
@@ -84,8 +83,7 @@ namespace Game
             Damage = 3;
             Leap = 3;
             MaterialsNeeded = 200;
-            Type = "archer";
-            Image = $"/GUI;component/Resources/{Type}{player.Color}.png";
+            Image = $"/GUI;component/Resources/archer{player.Color}.png";
             Range = 4;
             Role = typeOfCharacter.fighter;
 
@@ -109,8 +107,7 @@ namespace Game
             Damage = 5;
             Leap = 6;
             MaterialsNeeded = 300;
-            Type = "rider";
-            Image = $"/GUI;component/Resources/{Type}{player.Color}.png";
+            Image = $"/GUI;component/Resources/rider{player.Color}.png";
             Range = 2;
             Role = typeOfCharacter.fighter;
         }
@@ -132,8 +129,7 @@ namespace Game
             Leap = 1;
             MaterialsNeeded = 300;
             Damage = 50;
-            Type = "batteringRam";
-            Image = $"/GUI;component/Resources/{Type}{player.Color}.png";
+            Image = $"/GUI;component/Resources/batteringRam{player.Color}.png";
             Role = typeOfCharacter.wrecker;
             Range = 2;
         }
@@ -153,8 +149,7 @@ namespace Game
             Health = MaxHealth;
             Leap = 3;
             MaterialsNeeded = 400;
-            Type = "catapult";
-            Image = $"/GUI;component/Resources/{Type}{player.Color}.png";
+            Image = $"/GUI;component/Resources/catapult{player.Color}.png";
             Role = typeOfCharacter.wrecker;
             Range = 4;
             Damage = 80;
@@ -176,8 +171,7 @@ namespace Game
             Health = MaxHealth;
             Leap = 3;
             MaterialsNeeded = 700;
-            Type = "cannon";
-            Image = $"/GUI;component/Resources/{Type}{player.Color}.png";
+            Image = $"/GUI;component/Resources/cannon{player.Color}.png";
             Role = typeOfCharacter.wrecker;
             Damage = 120;
             Range = 5;

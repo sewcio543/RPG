@@ -6,20 +6,31 @@ using System.Text;
 
 namespace Game
 {
+    // Player's class
     [Serializable]
     public class Player : IComparable<Player>, IEquatable<Player>
     {
+        // actual level
         int level = 1;
+        // actual experience
         int exp = 0;
+        // name of the player
         string name;
+        // Base, every player has one at the beginning, the most important building
+        // if base falls, player loses
         Base _base;
+        // actual materials
         int materials = 100;
+        // color of the player
         string color;
+        // part of the board that' ve been discovered
         bool[,] charted;
 
+        // constructors
         public Player() { }
         public Player(string name) { this.Name = name; }
              
+        // properties
         public int Level
         {
             get => level;
@@ -37,12 +48,17 @@ namespace Game
         public string Color { get => color; set => color = value; }
         public bool[,] Charted { get => charted; set => charted = value; }
 
+        // methods
+
+        // methods return true if actual exp is enough to level up
         public bool nextLevel()
         {
+            // with every level threshold raises 
             if (this.Exp >= this.Level * 100 )
             {
                 this.Exp = this.Exp % (this.Level * 100);
                 this.Level++;
+                // base upgrades
                 this.Base.Exp += 20;
                 this.Base.Health += 10;
                 Base.MaxHealth += 10; 

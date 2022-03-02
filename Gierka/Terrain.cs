@@ -4,18 +4,23 @@ using System.Text;
 
 namespace Game
 {
+    // types of terrain, on the map
     public enum typeOfTerrain { plane, water, mountain, field }
 
     [Serializable]
+    //
     public class Terrain
     {
+        // relative path to png
         string image;
-        Building building;
+        // type of terrain
         typeOfTerrain type;
+
+        // properties
         public string Image { get => image; set => image = value; }
-        public Building Building { get => building; set => building = value; }
         public typeOfTerrain Type { get => type; set => type = value; }
 
+        // returns true if building can be placed on this terrain
         public bool build(Building building)
         {
             if (building.Terrain == Type)
@@ -24,6 +29,7 @@ namespace Game
         }
 
     }
+    // child classes, different terrains
     [Serializable]
     public class Mountain : Terrain
     {
