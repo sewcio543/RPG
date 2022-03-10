@@ -235,8 +235,8 @@ namespace Game
                         for (int j = 0; j < 3; j++)
                             player.Charted[i, j] = true;
                     player.Color = "Blue";
-                    player.Base = new Base(player, 0, 0);
-                    addBuilding(player.Base);
+                    player.Castle = new Castle(player, 0, 0);
+                    addBuilding(player.Castle);
                     this.addCharacter(new Wanderer(player, 0, 1));
                     Turn = player;
                 }
@@ -249,8 +249,8 @@ namespace Game
                         for (int j = height - 1; j > height - 4; j--)
                             player.Charted[i, j] = true;
                     player.Color = "Red";
-                    player.Base = new Base(player, Width - 1, Height - 1);
-                    addBuilding(player.Base);
+                    player.Castle = new Castle(player, Width - 1, Height - 1);
+                    addBuilding(player.Castle);
                     this.addCharacter(new Wanderer(player, Width - 1, Height - 2));
                 }
                 // third player, left-buttom corner, yellow color
@@ -262,8 +262,8 @@ namespace Game
                         for (int j = height - 1; j > height - 4; j--)
                             player.Charted[i, j] = true;
                     player.Color = "Yellow";
-                    player.Base = new Base(player, 0, Height - 1);
-                    addBuilding(player.Base);
+                    player.Castle = new Castle(player, 0, Height - 1);
+                    addBuilding(player.Castle);
                     this.addCharacter(new Wanderer(player, 0, Height - 2));
                 }
                 // first player, right-upper corner,purple color
@@ -275,8 +275,8 @@ namespace Game
                         for (int j = 0; j < 3; j++)
                             player.Charted[i, j] = true;
                     player.Color = "Purple";
-                    player.Base = new Base(player, Width - 1, 0);
-                    addBuilding(player.Base);
+                    player.Castle = new Castle(player, Width - 1, 0);
+                    addBuilding(player.Castle);
                     this.addCharacter(new Wanderer(player, Width - 1, 1));
                 }
                 else
@@ -379,7 +379,7 @@ namespace Game
             // removing player that lose
             foreach (Player player_ in Players)
             {
-                if (player_.Base.Health == 0)
+                if (player_.Castle.Health == 0)
                 {
                     Characters.RemoveAll(a => a.Player.Equals(player_));
                     Buildings.RemoveAll(a => a.Player.Equals(player_));

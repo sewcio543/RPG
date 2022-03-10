@@ -8,10 +8,10 @@
         Title="Start" Height="790" Width="360" Background="ForestGreen" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center">
-            <Image Source="/Resources/baseYellow.png" Width="80" Height="80"/>
+            <Image Source="/Resources/castleYellow.png" Width="80" Height="80"/>
             <Image Source="/Resources/wandererBlue.png" Width="80" Height="80"/>
             <Image Source="/Resources/wandererRed.png" Width="80" Height="80"/>
-            <Image Source="/Resources/basePurple.png" Width="80" Height="80"/>
+            <Image Source="/Resources/castlePurple.png" Width="80" Height="80"/>
         </StackPanel>
 
         
@@ -35,10 +35,10 @@
 
         
         <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center">
-            <Image Source="/Resources/baseBlue.png" Width="80" Height="80"/>
+            <Image Source="/Resources/castleBlue.png" Width="80" Height="80"/>
             <Image Source="/Resources/wandererYellow.png" Width="80" Height="80"/>
             <Image Source="/Resources/wandererPurple.png" Width="80" Height="80"/>
-            <Image Source="/Resources/baseRed.png" Width="80" Height="80"/>
+            <Image Source="/Resources/castleRed.png" Width="80" Height="80"/>
         </StackPanel>
 
         <Button Style="{StaticResource ButtonStyle}" x:Name="exitButton"  Content="Back to menu" Margin="0,580,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"  Height="80" Click="exitButton_Click"/>

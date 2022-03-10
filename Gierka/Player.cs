@@ -16,9 +16,9 @@ namespace Game
         int exp = 0;
         // name of the player
         string name;
-        // Base, every player has one at the beginning, the most important building
-        // if base falls, player loses
-        Base _base;
+        // Castle, every player has one at the beginning, the most important building
+        // if castle falls, player loses
+        Castle castle;
         // actual materials
         int materials = 100;
         // color of the player
@@ -42,7 +42,7 @@ namespace Game
         }
 
         public int Exp { get => exp; set => exp = value; }
-        public Base Base { get => _base; set => _base = value; }
+        public Castle Castle { get => castle; set => castle = value; }
         public string Name { get => name; set => name = value; }
         public int Materials { get => materials; set => materials = value; }
         public string Color { get => color; set => color = value; }
@@ -59,9 +59,9 @@ namespace Game
                 this.Exp = this.Exp % (this.Level * 100);
                 this.Level++;
                 // base upgrades
-                this.Base.Exp += 20;
-                this.Base.Health += 10;
-                Base.MaxHealth += 10; 
+                this.Castle.Exp += 20;
+                this.Castle.Health += 10;
+                Castle.MaxHealth += 10; 
                 return true;
             }
             return false;

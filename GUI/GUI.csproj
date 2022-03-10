@@ -31,11 +31,7 @@
     <None Remove="Resources\barrackRed.png" />
     <None Remove="Resources\barrackYellow.png" />
     <None Remove="Resources\base - Copy.png" />
-    <None Remove="Resources\baseBlue.png" />
     <None Remove="Resources\baseGreen.png" />
-    <None Remove="Resources\basePurple.png" />
-    <None Remove="Resources\baseRed.png" />
-    <None Remove="Resources\baseYellow.png" />
     <None Remove="Resources\batteringRam - Copy.png" />
     <None Remove="Resources\batteringRamBlue.png" />
     <None Remove="Resources\batteringRamGreen.png" />
@@ -51,6 +47,10 @@
     <None Remove="Resources\cannonPurple.png" />
     <None Remove="Resources\cannonRed.png" />
     <None Remove="Resources\cannonYellow.png" />
+    <None Remove="Resources\castleBlue.png" />
+    <None Remove="Resources\castlePurple.png" />
+    <None Remove="Resources\castleRed.png" />
+    <None Remove="Resources\castleYellow.png" />
     <None Remove="Resources\catapult - Copy.png" />
     <None Remove="Resources\catapult.png" />
     <None Remove="Resources\catapultBlue.png" />
@@ -168,19 +168,19 @@
     <Content Include="Resources\barrackYellow.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\base.png">
+    <Content Include="Resources\castle.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\baseBlue.png">
+    <Content Include="Resources\castleBlue.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\basePurple.png">
+    <Content Include="Resources\castlePurple.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\baseRed.png">
+    <Content Include="Resources\castleRed.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\baseYellow.png">
+    <Content Include="Resources\castleYellow.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\batteringRam.png">

@@ -47,13 +47,13 @@ namespace Game
 
     }
     [Serializable]
-    public class Base : Building
+    public class Castle : Building
     {
 
-        public Base(Player player, int x, int y) : base(player)
+        public Castle(Player player, int x, int y) : base(player)
         {
             MaxHealth = 400;
-            Type = "base";
+            Type = "castle";
             Health = MaxHealth;
             Exp = 50;
             X = x;

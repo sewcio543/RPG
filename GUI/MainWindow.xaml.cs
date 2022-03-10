@@ -137,7 +137,7 @@ namespace GUI
             foreach (Player player_ in board.Players)
             {
                 // if player's base was destroyed, he' lost
-                if (player_.Base.Health == 0)
+                if (player_.Castle.Health == 0)
                 {
                     board.Characters.RemoveAll(a => a.Player.Equals(player_));
                     board.Buildings.RemoveAll(a => a.Player.Equals(player_));

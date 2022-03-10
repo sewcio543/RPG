@@ -17,11 +17,6 @@ C:\Users\xxx\Desktop\Gierka\GUI\bin\Debug\net6.0-windows\Resources\barrackGreen.
 C:\Users\xxx\Desktop\Gierka\GUI\bin\Debug\net6.0-windows\Resources\barrackPurple.png
 C:\Users\xxx\Desktop\Gierka\GUI\bin\Debug\net6.0-windows\Resources\barrackRed.png
 C:\Users\xxx\Desktop\Gierka\GUI\bin\Debug\net6.0-windows\Resources\barrackYellow.png
-C:\Users\xxx\Desktop\Gierka\GUI\bin\Debug\net6.0-windows\Resources\base.png
-C:\Users\xxx\Desktop\Gierka\GUI\bin\Debug\net6.0-windows\Resources\baseBlue.png
-C:\Users\xxx\Desktop\Gierka\GUI\bin\Debug\net6.0-windows\Resources\basePurple.png
-C:\Users\xxx\Desktop\Gierka\GUI\bin\Debug\net6.0-windows\Resources\baseRed.png
-C:\Users\xxx\Desktop\Gierka\GUI\bin\Debug\net6.0-windows\Resources\baseYellow.png
 C:\Users\xxx\Desktop\Gierka\GUI\bin\Debug\net6.0-windows\Resources\batteringRam.png
 C:\Users\xxx\Desktop\Gierka\GUI\bin\Debug\net6.0-windows\Resources\batteringRamBlue.png
 C:\Users\xxx\Desktop\Gierka\GUI\bin\Debug\net6.0-windows\Resources\batteringRamGreen.png
@@ -140,3 +135,8 @@ C:\Users\xxx\Desktop\Gierka\GUI\obj\Debug\net6.0-windows\GUI.genruntimeconfig.ca
 C:\Users\xxx\Desktop\Gierka\GUI\obj\Debug\net6.0-windows\ref\GUI.dll
 C:\Users\xxx\Desktop\Gierka\GUI\bin\Debug\net6.0-windows\Resources\letter.png
 C:\Users\xxx\Desktop\Gierka\GUI\bin\Debug\net6.0-windows\Resources\back.png
+C:\Users\xxx\Desktop\Gierka\GUI\bin\Debug\net6.0-windows\Resources\castle.png
+C:\Users\xxx\Desktop\Gierka\GUI\bin\Debug\net6.0-windows\Resources\castleBlue.png
+C:\Users\xxx\Desktop\Gierka\GUI\bin\Debug\net6.0-windows\Resources\castlePurple.png
+C:\Users\xxx\Desktop\Gierka\GUI\bin\Debug\net6.0-windows\Resources\castleRed.png
+C:\Users\xxx\Desktop\Gierka\GUI\bin\Debug\net6.0-windows\Resources\castleYellow.png
