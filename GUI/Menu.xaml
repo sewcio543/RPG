@@ -15,9 +15,9 @@
         </StackPanel>
 
         <Grid Margin="0,130,0,0">
-            <Button x:Name="newButton" Content="New Game" FontSize="30" FontWeight="Bold" Foreground="Green" Width="330" Height="100" VerticalAlignment="Top" HorizontalAlignment="Left" Background="LightSeaGreen" MouseEnter="new_MouseEnter" MouseLeave="new_MouseLeave" Click="newButton_Click"/>
-            <Button x:Name="continueButton"  Content="Continue Game" Margin="0,110,0,0" FontSize="30" FontWeight="Bold" Foreground="Green" VerticalAlignment="Top" HorizontalAlignment="Left"  Width="330" Height="100" Background="LightSeaGreen"  MouseEnter="continue_MouseEnter" MouseLeave="continue_MouseLeave" Click="continue_Click"/>
-            <Button x:Name="aboutButton"  Content="About game" Margin="0,220,0,0" FontSize="30" FontWeight="Bold" Foreground="Green" VerticalAlignment="Top" HorizontalAlignment="Left"  Width="330" Height="100" Background="LightSeaGreen"  MouseEnter="about_MouseEnter"  MouseLeave="about_MouseLeave" Click="about_Click"/>
+            <Button Style="{StaticResource ButtonStyle}" x:Name="newButton" Content="New Game" Height="100" VerticalAlignment="Top" HorizontalAlignment="Left"  Click="newButton_Click"/>
+            <Button Style="{StaticResource ButtonStyle}" x:Name="continueButton" Content="Continue Game" Margin="0,110,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left" Height="100" Click="continue_Click"/>
+            <Button Style="{StaticResource ButtonStyle}" x:Name="aboutButton"  Content="About game" Margin="0,220,0,0"  VerticalAlignment="Top" HorizontalAlignment="Left" Height="100" Click="about_Click"/>
 
         </Grid>
 

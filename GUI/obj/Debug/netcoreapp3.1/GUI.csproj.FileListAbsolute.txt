@@ -138,3 +138,6 @@ C:\Users\xxx\Desktop\Gierka\GUI\bin\Debug\netcoreapp3.1\Resources\warriorYellow.
 C:\Users\xxx\Desktop\Gierka\GUI\obj\Debug\netcoreapp3.1\Menu.g.cs
 C:\Users\xxx\Desktop\Gierka\GUI\obj\Debug\netcoreapp3.1\Menu.baml
 C:\Users\xxx\Desktop\Gierka\GUI\bin\Debug\netcoreapp3.1\Resources\field.png
+C:\Users\xxx\Desktop\Gierka\GUI\obj\Debug\netcoreapp3.1\About.g.cs
+C:\Users\xxx\Desktop\Gierka\GUI\obj\Debug\netcoreapp3.1\App.baml
+C:\Users\xxx\Desktop\Gierka\GUI\obj\Debug\netcoreapp3.1\About.baml

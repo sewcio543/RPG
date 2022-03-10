@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI"
         mc:Ignorable="d"
-        Title="Start" Height="680" Width="360" Background="ForestGreen" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="Start" Height="790" Width="360" Background="ForestGreen" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center">
             <Image Source="/Resources/baseYellow.png" Width="80" Height="80"/>
@@ -14,6 +14,8 @@
             <Image Source="/Resources/basePurple.png" Width="80" Height="80"/>
         </StackPanel>
 
+        
+        
         <StackPanel Margin="0,80,0,0">
             <TextBox Margin="0,20,0,0" x:Name="player1"  MaxLength="10" Background="Blue" Foreground="MistyRose"  Width="200" Height="50" VerticalAlignment="Top" VerticalContentAlignment="Center" FontSize="30"  HorizontalAlignment="Center" TextChanged="player1_TextChanged"/>
             <TextBox Margin="0,10,0,0" x:Name="player2"   MaxLength="10" Background="Red" Foreground="Black"  Width="200" Height="50" VerticalAlignment="Top" VerticalContentAlignment="Center" FontSize="30"  HorizontalAlignment="Center" TextChanged="player2_TextChanged" IsEnabledChanged="player2_IsEnabledChanged"/>
@@ -38,6 +40,8 @@
             <Image Source="/Resources/wandererPurple.png" Width="80" Height="80"/>
             <Image Source="/Resources/baseRed.png" Width="80" Height="80"/>
         </StackPanel>
+
+        <Button Style="{StaticResource ButtonStyle}" x:Name="exitButton"  Content="Back to menu" Margin="0,580,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"  Height="80" Click="exitButton_Click"/>
 
     </Grid>
 </Window>

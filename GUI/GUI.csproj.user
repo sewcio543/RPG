@@ -9,6 +9,9 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="About.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="End.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -20,6 +23,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="About.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="End.xaml">
       <SubType>Designer</SubType>
     </Page>

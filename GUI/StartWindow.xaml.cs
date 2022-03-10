@@ -22,7 +22,7 @@ namespace GUI
     {
         Board board;
         ArrayList textboxes;
-        public StartWindow()
+        public StartWindow(bool creative_ = false)
         {
             InitializeComponent();
             textboxes = new ArrayList() { player1, player2, player3, player4 };
@@ -30,8 +30,11 @@ namespace GUI
 
             player2.IsEnabled = false;
             player3.IsEnabled = false;
+
+            if (creative_) { creative.IsChecked = true; }
         }
 
+        //starting the game
         private void start_Click(object sender, RoutedEventArgs e)
         {
             board.Players.Clear();
@@ -75,6 +78,7 @@ namespace GUI
 
         }
 
+        
         private void player1_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (player1.Text != "")
@@ -124,6 +128,13 @@ namespace GUI
             if (player3.IsEnabled && player4.Text != "")
                 player4.IsEnabled = true;
 
+        }
+
+        private void exitButton_Click(object sender, RoutedEventArgs e)
+        {
+            Window window = new Menu();
+            window.Show(); 
+            this.Close();   
         }
     }
 

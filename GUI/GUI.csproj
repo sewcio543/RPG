@@ -2,9 +2,10 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net6.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>Resources\icon.ico</ApplicationIcon>
+    <StartupObject>GUI.App</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
@@ -23,6 +24,7 @@
     <None Remove="Resources\armoryPurple.png" />
     <None Remove="Resources\armoryRed.png" />
     <None Remove="Resources\armoryYellow.png" />
+    <None Remove="Resources\back.png" />
     <None Remove="Resources\barrackBlue.png" />
     <None Remove="Resources\barrackGreen.png" />
     <None Remove="Resources\barrackPurple.png" />
@@ -72,6 +74,7 @@
     <None Remove="Resources\housePurple.png" />
     <None Remove="Resources\houseRed.png" />
     <None Remove="Resources\houseYellow.png" />
+    <None Remove="Resources\letter.png" />
     <None Remove="Resources\mineBlue.png" />
     <None Remove="Resources\mineGreen.png" />
     <None Remove="Resources\minePurple.png" />
@@ -142,6 +145,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\armoryYellow.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\back.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\barrack.png">
@@ -286,6 +292,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\icon.ico" />
+    <Content Include="Resources\letter.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\mine.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

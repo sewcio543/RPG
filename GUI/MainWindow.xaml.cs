@@ -43,8 +43,8 @@ namespace GUI
             board = board_;
 
             panels = new Dictionary<Panel, Thickness>() { { upperGrid, upperGrid.Margin }, { levelPanel, levelPanel.Margin }, { actualPlayer, actualPlayer.Margin }, { materialsGrid, materialsGrid.Margin }, { actionMenu, actionMenu.Margin }, { buildMenu, buildMenu.Margin }, { barrackMenu, barrackMenu.Margin }, { armoryMenu, armoryMenu.Margin } };
-            images = new ArrayList() { blackCircle7, soldierImage, farmImage, nextImage, levelImage, buildImage, fightImage, moveImage, collectImage, goldImage, stoneImage, treeImage, barrackImage, houseImage, blackCircle1, blackCircle2, blackCircle3, blackCircle4, blackCircle5, blackCircle6, warriorImage, archerImage, armoryImage, riderImage, batteringRamImage, catapultImage, cannonImage, mineImage, portImage };
-            buttons = new ArrayList() { soldier, farmButton, nextButton, moveButton, collectButton, fightButton, buildButton, houseButton, barrackButton, warrior, archer, rider, batteringRam, catapult, cannon, mineButton, portButton, armoryButton };
+            images = new ArrayList() { backImage, blackCircle7, soldierImage, farmImage, nextImage, levelImage, buildImage, fightImage, moveImage, collectImage, goldImage, stoneImage, treeImage, barrackImage, houseImage, blackCircle1, blackCircle2, blackCircle3, blackCircle4, blackCircle5, blackCircle6, warriorImage, archerImage, armoryImage, riderImage, batteringRamImage, catapultImage, cannonImage, mineImage, portImage };
+            buttons = new ArrayList() { backButton, soldier, farmButton, nextButton, moveButton, collectButton, fightButton, buildButton, houseButton, barrackButton, warrior, archer, rider, batteringRam, catapult, cannon, mineButton, portButton, armoryButton };
             labels = new ArrayList() { levelTextbox, levelText, matsLabel, playerName };
 
             maxMenuHeight = SystemParameters.MaximizedPrimaryScreenHeight / 10;
@@ -74,9 +74,7 @@ namespace GUI
             cannon.ToolTip = new BatteringRam(player).Tip();
         }
 
-        public void t(double x)
-        { Title = $"{x}"; }
-
+        // changes label size and its font-size based on window's size
         public void setTextLabel(Label label)
         {
             double size = label.Width * label.Height;
@@ -85,6 +83,7 @@ namespace GUI
             label.FontSize *= 1 + ((label.Width * label.Height / size) - 1) * 0.7;
         }
 
+        // changes upper grid's elements size and positions based on window's size
         public void setUpperGrid()
         {
             upperGrid.Height = 0.1 * ActualHeight;
@@ -121,6 +120,7 @@ namespace GUI
             mainGrid.Margin = new Thickness(0, upperGrid.Height, 0, 0);
         }
 
+        // sets new sqaure size and creates new layout based on window;'s size
         private void WindowSizeChanged(object sender, SizeChangedEventArgs e)
         {
             setUpperGrid();
@@ -131,16 +131,19 @@ namespace GUI
             place(player);
         }
 
+        // invoked after the end of every turn
         public void nextPlayer()
         {
             foreach (Player player_ in board.Players)
             {
+                // if player's base was destroyed, he' lost
                 if (player_.Base.Health == 0)
                 {
                     board.Characters.RemoveAll(a => a.Player.Equals(player_));
                     board.Buildings.RemoveAll(a => a.Player.Equals(player_));
                     board.Players.Remove(player_);
 
+                    // if only one player remains, game is over
                     if (board.Players.Count == 1)
                     {
                         End endWindow = new End(player_, true);
@@ -161,7 +164,7 @@ namespace GUI
                 }
             }
 
-
+            // next player's turn
             if (board.Players.FindIndex(a => a.Equals(player)) == board.Players.Count - 1)
                 player = board.Players[0];
             else
@@ -175,6 +178,7 @@ namespace GUI
 
         }
 
+        // UI elements are updated 
         public void setPlayer()
         {
             levelBar.ToolTip = $"{player.Exp}/{player.Level * 100}";
@@ -213,6 +217,7 @@ namespace GUI
 
         }
 
+        // sets grid columns and rows
         public void layout()
         {
             mainGrid.RowDefinitions.Clear();
@@ -233,6 +238,7 @@ namespace GUI
             }
         }
 
+        // upadtes mouse location, x, y (square co-ordinates)
         public void getMouseLocation()
         {
             Point position = Mouse.GetPosition(this);
@@ -240,8 +246,14 @@ namespace GUI
             y = (int)Math.Floor((position.Y - upperGrid.Height) / squareHeight);
         }
 
+        // sets img of square
         public void setImg(int i, int j, string url, string type = "", bool button_ = true, bool border_ = false, string color = "")
         {
+            // border -> button -> stackpanel -> image + (progressbar)
+            // or
+            // border -> stackpanel -> image + (progressbar)
+
+            // border
             Border border = new Border();
             border.BorderThickness = new Thickness(2);
             if (color == "red")
@@ -274,6 +286,7 @@ namespace GUI
 
             if (button_)
             {
+                // events on click
                 if (type == "character")
                     button.Click += new RoutedEventHandler(characterClick);
 
@@ -296,9 +309,11 @@ namespace GUI
                 Grid.SetColumn(border, i);
                 Grid.SetRow(border, j);
             }
+            // uncharted psrt of the map
             if (type == "unknown")
                 stackPanel.Background = Brushes.DarkGray;
 
+            // progress bar (for characters and buildings)
             else if (board.getObjectFromSquare(i, j) != null && board.getObjectFromSquare(i, j).GetType().IsSubclassOf(typeof(Character)))
             {
                 pb.Maximum = board.Characters.Find(a => a.X == i && a.Y == j).MaxHealth;
@@ -317,6 +332,7 @@ namespace GUI
                 image.Height = 0.8 * squareHeight;
             }
 
+            // color of progres bar based on object's health
             if (pb.Value / pb.Maximum > 0.8)
                 pb.Foreground = Brushes.LawnGreen;
             else if (pb.Value / pb.Maximum > 0.5)
@@ -326,6 +342,7 @@ namespace GUI
             else
                 pb.Foreground = Brushes.Red;
 
+            // tooltip if possible
             if (board.getObjectFromSquare(i, j) != null)
                 image.ToolTip = board.getObjectFromSquare(i, j).ToString();
             else if (board.Map[i, j].Type != typeOfTerrain.plane)
@@ -338,6 +355,7 @@ namespace GUI
 
         }
 
+        // places all the objects of the board on grid
         public void place(Player player)
         {
             mainGrid.Children.Clear();
@@ -347,6 +365,7 @@ namespace GUI
                 {
                     if (player.Charted[i, j])
                         setImg(i, j, board.Map[i, j].Image, "", false);
+                    // uncharted
                     else
                         setImg(i, j, "", "unknown", false);
 
@@ -358,6 +377,7 @@ namespace GUI
                     setImg(obj.X, obj.Y, obj.Image, "", false);
             }
 
+            // only active player's characters and buildings are set as buttons
             foreach (Building building in board.Buildings)
             {
                 if (player.Charted[building.X, building.Y])
@@ -373,6 +393,7 @@ namespace GUI
             {
                 if (player.Charted[character.X, character.Y])
                 {
+                    // chosen is set with border
                     if (chosenCharacter != null && character.Equals(chosenCharacter))
                         setImg(chosenCharacter.X, chosenCharacter.Y, chosenCharacter.Image, "character", true, true, "black");
                     else if (character.Player.Equals(player))
@@ -385,6 +406,7 @@ namespace GUI
 
         }
 
+        // reset chosen objects to null and all MouseButton events
         public void chosenChanged()
         {
             chosenCharacter = null;
@@ -405,6 +427,7 @@ namespace GUI
             place(player);
         }
 
+        // invoked with change of action chosen by the player, resets all MouseButton events
         public void optionChanged()
         {
             place(player);
@@ -419,10 +442,12 @@ namespace GUI
             armoryMenu.Visibility = Visibility.Hidden;
         }
 
-        public void createFighter(object sender, RoutedEventArgs e)
+        // invoked by buttons of barrack's menu, creates new character and shows squares of the board eligible to place them on.
+        private void createFighter(object sender, RoutedEventArgs e)
         {
             Point position = Mouse.GetPosition(this);
 
+            // creating chosen character
             if (position.X < warrior.PointToScreen(new Point(0d, 0d)).X + warrior.Width)
                 chosenCharacter = new Warrior(player);
 
@@ -434,8 +459,10 @@ namespace GUI
             else
                 chosenCharacter = new Soldier(player);
 
+
             mainGrid.MouseDown += new MouseButtonEventHandler(train);
 
+            // hightlighting sqares where the object can be placed
             for (int i = 0; i < board.Squares.GetLength(0); i++)
                 for (int j = 0; j < board.Squares.GetLength(1); j++)
                     if (board.canTrain(chosenBuilding, chosenCharacter, i, j))
@@ -443,7 +470,8 @@ namespace GUI
 
         }
 
-        public void createMachine(object sender, RoutedEventArgs e)
+        // invoked by buttons of armory's menu, creates new character and shows squares of the board eligible to place them on.
+        private void createMachine(object sender, RoutedEventArgs e)
         {
             Point position = Mouse.GetPosition(this);
             if (position.X < batteringRam.PointToScreen(new Point(0d, 0d)).X + batteringRam.Width)
@@ -464,7 +492,8 @@ namespace GUI
 
         }
 
-        public void chooseBuilding(object sender, RoutedEventArgs e)
+        // invoked by buttons of builder's menu, creates new building and shows squares of the board eligible to place them on.
+        private void chooseBuilding(object sender, RoutedEventArgs e)
         {
             place(player);
             Point position = Mouse.GetPosition(this);
@@ -497,6 +526,7 @@ namespace GUI
 
         }
 
+        // enables appropriate options for chosen character
         public void chooseCharacter(Character character)
         {
             chosenChanged();
@@ -516,6 +546,7 @@ namespace GUI
 
         }
 
+        // sets barrack as chosen building, shows barrrack's menu
         private void barrackClick(object sender, RoutedEventArgs e)
         {
             chosenChanged();
@@ -526,9 +557,9 @@ namespace GUI
 
         }
 
+        // sets armory as chosen building, shows armory's menu
         private void armoryClick(object sender, RoutedEventArgs e)
         {
-
             chosenChanged();
             armoryMenu.Visibility = Visibility.Visible;
             getMouseLocation();
@@ -536,34 +567,41 @@ namespace GUI
             setImg(chosenBuilding.X, chosenBuilding.Y, chosenBuilding.Image, chosenBuilding.Type, true, true, "black");
         }
 
-        public void characterClick(object sender, RoutedEventArgs r)
+        // invokes when chosen character is changed by clicking on it, invokes chooseCharacter function
+        private void characterClick(object sender, RoutedEventArgs r)
         {
             getMouseLocation();
             chooseCharacter(board.getObjectFromSquare(x, y) as Character);
         }
 
-        public void moveTo(object sender, MouseEventArgs e)
+        // triggered by clicking within the window if move's action is chosen
+        private void moveTo(object sender, MouseEventArgs e)
         {
             getMouseLocation();
             board.move(chosenCharacter, x, y);
+            // if character moved (appropriate sqaure was clicked)
             if (board.distance(chosenCharacter.X, chosenCharacter.Y, x, y) == 0)
             {
                 nextPlayer();
                 mainGrid.MouseDown -= new MouseButtonEventHandler(moveTo);
             }
+            // else, hightlighted squares are removed
             else
                 place(player);
         }
 
-        public void train(object sender, MouseEventArgs e)
+        // triggered by clicking within the window if character to build is chosen in armory's menu or barrack's menu
+        private void train(object sender, MouseEventArgs e)
         {
             getMouseLocation();
             if (board.canTrain(chosenBuilding, chosenCharacter, x, y))
             {
+                // setting character's co-ordinates
                 chosenCharacter.X = x;
                 chosenCharacter.Y = y;
                 try
                 {
+                    // character is added to the board if player has enough materials
                     board.addCharacter(chosenCharacter);
 
                     for (int i = 0; i < board.Squares.GetLength(0); i++)
@@ -571,26 +609,23 @@ namespace GUI
                             if (board.distance(x, y, i, j) < 2)
                                 player.Charted[i, j] = true;
 
-                    mainGrid.MouseDown -= new MouseButtonEventHandler(train);
                     chosenCharacter = null;
+                    matsLabel.Content = Convert.ToString(player.Materials);
 
                 }
+                // exception is thrown if player has not enough materials
                 catch (Exception error)
                 { MessageBox.Show(error.Message, "Impossible", MessageBoxButton.OK, MessageBoxImage.Exclamation); }
 
-                matsLabel.Content = Convert.ToString(player.Materials);
-                mainGrid.MouseDown -= new MouseButtonEventHandler(train);
-                place(player);
             }
-            else
-            {
-                place(player);
 
-            }
+            mainGrid.MouseDown -= new MouseButtonEventHandler(train);
+            place(player);
             setImg(chosenBuilding.X, chosenBuilding.Y, chosenBuilding.Image, chosenBuilding.Type, true, true, "black");
         }
 
-        public void build(object sender, MouseEventArgs e)
+        // triggered by clicking within the window if building to build is chosen in builder's menu
+        private void build(object sender, MouseEventArgs e)
         {
             getMouseLocation();
 
@@ -601,34 +636,41 @@ namespace GUI
 
                 try
                 {
+                    // if palyer has enough materials building is added to the board
                     board.addBuilding(chosenBuilding);
+                    // terrain of the sqaure is changed to plain
                     board.Map[x, y] = new Plane();
+                    // map around new building becomes charted
                     for (int i = 0; i < board.Squares.GetLength(0); i++)
                         for (int j = 0; j < board.Squares.GetLength(1); j++)
                             if (board.distance(x, y, i, j) < 2)
                                 player.Charted[i, j] = true;
 
+                    matsLabel.Content = Convert.ToString(player.Materials);
                 }
+                // if player does't have enough materials, exception is thrown
                 catch (Exception error)
                 { MessageBox.Show(error.Message, "Impossible", MessageBoxButton.OK, MessageBoxImage.Exclamation); }
 
                 chosenBuilding = null;
-                matsLabel.Content = Convert.ToString(player.Materials);
-                mainGrid.MouseDown -= new MouseButtonEventHandler(build);
             }
+            mainGrid.MouseDown -= new MouseButtonEventHandler(build);
             place(player);
         }
 
-        public void fight(object sender, MouseEventArgs e)
+        // triggered by clicking within the window if fight's action is chosen
+        private void fight(object sender, MouseEventArgs e)
         {
             getMouseLocation();
 
+            // attacking a building
             if (board.canFight(chosenCharacter, x, y) && board.getObjectFromSquare(x, y).GetType().IsSubclassOf(typeof(Building)))
             {
                 chosenCharacter.Strike(board.getObjectFromSquare(x, y) as Building);
                 mainGrid.MouseDown -= new MouseButtonEventHandler(fight);
                 nextPlayer();
             }
+            // fighting a character
             else if (board.canFight(chosenCharacter, x, y) && board.getObjectFromSquare(x, y).GetType().IsSubclassOf(typeof(Character)))
             {
                 chosenCharacter.Strike(board.getObjectFromSquare(x, y) as Character);
@@ -640,7 +682,8 @@ namespace GUI
 
         }
 
-        public void collect(object sender, MouseEventArgs e)
+        // triggered by clicking within the window if collect's action is chosen
+        private void collect(object sender, MouseEventArgs e)
         {
             getMouseLocation();
             if (board.canCollect(chosenCharacter, x, y))
@@ -653,9 +696,11 @@ namespace GUI
             place(player);
         }
 
+        // buttons of action's menu
         private void moveButton_Click(object sender, RoutedEventArgs e)
         {
             optionChanged();
+            // hightlighting the squares chosen character can move to
             for (int i = 0; i < board.Squares.GetLength(0); i++)
                 for (int j = 0; j < board.Squares.GetLength(1); j++)
                     if (board.canMove(chosenCharacter, i, j))
@@ -673,7 +718,7 @@ namespace GUI
         private void fightButton_Click(object sender, RoutedEventArgs e)
         {
             optionChanged();
-
+            // hightlighting the sqaures character can fight against 
             for (int i = 0; i < board.Squares.GetLength(0); i++)
                 for (int j = 0; j < board.Squares.GetLength(1); j++)
                     if (board.canFight(chosenCharacter, i, j))
@@ -685,6 +730,7 @@ namespace GUI
         private void collectButton_Click(object sender, RoutedEventArgs e)
         {
             optionChanged();
+            // hightlighting the squares chosen character can collect objects from
             for (int i = 0; i < board.Squares.GetLength(0); i++)
                 for (int j = 0; j < board.Squares.GetLength(1); j++)
                     if (board.canCollect(chosenCharacter, i, j))
@@ -696,6 +742,12 @@ namespace GUI
 
         private void nextButton_Click(object sender, RoutedEventArgs e) { nextPlayer(); }
 
+        private void backButton_Click(object sender, RoutedEventArgs e)
+        {
+            Window window = new Menu();
+            window.Show();
+            this.Close();
+        }
 
     }
 }

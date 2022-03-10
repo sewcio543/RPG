@@ -1,0 +1,47 @@
+﻿<Window x:Class="GUI.About"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GUI"
+        mc:Ignorable="d"
+        Title="About" Height="470" Width="800" Background="ForestGreen" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid>
+        
+        <StackPanel Width="500" Height="300" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,0">
+
+            <Button Style="{StaticResource ButtonStyle}" x:Name="play" Content="Let's play"  Height="100" VerticalAlignment="Center" HorizontalAlignment="Left" Click="play_Click" />
+            <Button Style="{StaticResource ButtonStyle}" x:Name="play_creative" Content="Try creative" Height="100" HorizontalAlignment="Left" VerticalAlignment="Center" Click="play_creative_Click" />
+            <Button Style="{StaticResource ButtonStyle}" x:Name="menu" Content="Back to menu" Height="100" HorizontalAlignment="Left" VerticalAlignment="Center" Click="menu_Click" />
+
+        </StackPanel>
+
+
+
+        <Grid VerticalAlignment="Top" HorizontalAlignment="Right" Margin="30,-10" >
+            <Image Source="/Resources/letter.png" Width="400" Height="600" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+            <TextBlock Width="200" Height="300" TextWrapping="Wrap" Margin="0,20,0,0">
+               <Bold>
+               <TextBlock FontSize="16">Welcome Dear Wanderer!</TextBlock> 
+                <LineBreak/>      <LineBreak/>      
+                Do not miss out on this advanture!
+                <LineBreak/>     
+                Buckle up and go ahead!
+                <LineBreak/>     
+                Set out on the amazing journey, discover uncharted lands, build your army and conquer other kingdoms!
+                <LineBreak/>     
+                Let's go, nothing to stop you, gather some materials and put the foundation to the greatest emipre ever.
+                <LineBreak/>     
+                Don't forget about your castle, beware of your enemies, defend it at all cost.
+                <LineBreak/>     
+                Bla bla, it's getting boring here, you' ve got a map, let's explore it together!
+               </Bold>
+            </TextBlock>
+
+        </Grid>
+
+    </Grid>
+
+
+</Window>
+    

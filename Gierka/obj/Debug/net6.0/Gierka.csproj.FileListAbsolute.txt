@@ -1,0 +1,12 @@
+C:\Users\xxx\Desktop\Gierka\Gierka\bin\Debug\net6.0\Gierka.deps.json
+C:\Users\xxx\Desktop\Gierka\Gierka\bin\Debug\net6.0\Gierka.dll
+C:\Users\xxx\Desktop\Gierka\Gierka\bin\Debug\net6.0\Gierka.pdb
+C:\Users\xxx\Desktop\Gierka\Gierka\obj\Debug\net6.0\Gierka.csproj.AssemblyReference.cache
+C:\Users\xxx\Desktop\Gierka\Gierka\obj\Debug\net6.0\Gierka.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\xxx\Desktop\Gierka\Gierka\obj\Debug\net6.0\Gierka.AssemblyInfoInputs.cache
+C:\Users\xxx\Desktop\Gierka\Gierka\obj\Debug\net6.0\Gierka.AssemblyInfo.cs
+C:\Users\xxx\Desktop\Gierka\Gierka\obj\Debug\net6.0\Gierka.csproj.CoreCompileInputs.cache
+C:\Users\xxx\Desktop\Gierka\Gierka\obj\Debug\net6.0\Gierka.dll
+C:\Users\xxx\Desktop\Gierka\Gierka\obj\Debug\net6.0\refint\Gierka.dll
+C:\Users\xxx\Desktop\Gierka\Gierka\obj\Debug\net6.0\Gierka.pdb
+C:\Users\xxx\Desktop\Gierka\Gierka\obj\Debug\net6.0\ref\Gierka.dll

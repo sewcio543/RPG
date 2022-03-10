@@ -23,7 +23,7 @@ namespace Game
         bool[,] squares;
         // map with different terrains of the same size as board
         Terrain[,] map;
-        // player, who has move
+        // player, who has the move
         Player turn;
 
         // constructors
@@ -317,6 +317,8 @@ namespace Game
 
             using (StreamWriter writer = new StreamWriter("board.csv"))
                 writer.Write(ToString());
+
+            serialize("board.bin");
 
         }
 

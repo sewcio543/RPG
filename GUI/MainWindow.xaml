@@ -57,36 +57,36 @@
 
 
             <StackPanel x:Name="buildMenu" Margin="30,0,0,0"  Visibility="Hidden" Orientation="Horizontal"   VerticalAlignment="Top" HorizontalAlignment="Left" >
-                <Button x:Name="barrackButton" IsEnabled="False" Background="Transparent" BorderThickness="0" MaxWidth="100" MaxHeight="100" Width="100" Height="100" Click="chooseBuilding">
+                <Button x:Name="barrackButton" IsEnabled="False" ToolTipService.ShowOnDisabled="True" Background="Transparent" BorderThickness="0" MaxWidth="100" MaxHeight="100" Width="100" Height="100" Click="chooseBuilding">
                     <Grid>
                         <Image x:Name="barrackImage" Source="/Resources/barrack.png" MaxWidth="90" MaxHeight="90" Width="90" Height="90" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     </Grid>
                 </Button>
 
-                <Button x:Name="houseButton" IsEnabled="False" Background="Transparent" BorderThickness="0" MaxWidth="100" MaxHeight="100" Width="100" Height="100" VerticalAlignment="Top" HorizontalAlignment="Left"  Click="chooseBuilding">
+                <Button x:Name="houseButton" IsEnabled="False" ToolTipService.ShowOnDisabled="True" Background="Transparent" BorderThickness="0" MaxWidth="100" MaxHeight="100" Width="100" Height="100" VerticalAlignment="Top" HorizontalAlignment="Left"  Click="chooseBuilding">
                     <Grid>
                         <Image x:Name="houseImage"  Source="/Resources/house.png" MaxWidth="100" MaxHeight="100" Width="100" Height="100"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     </Grid>
                 </Button>
-                <Button x:Name="armoryButton" IsEnabled="False" Background="Transparent" BorderThickness="0" MaxWidth="100" MaxHeight="100" Width="100" Height="100" VerticalAlignment="Top" HorizontalAlignment="Left"  Click="chooseBuilding">
+                <Button x:Name="armoryButton" IsEnabled="False" ToolTipService.ShowOnDisabled="True" Background="Transparent" BorderThickness="0" MaxWidth="100" MaxHeight="100" Width="100" Height="100" VerticalAlignment="Top" HorizontalAlignment="Left"  Click="chooseBuilding">
                     <Grid>
                         <Image x:Name="armoryImage"  Source="/Resources/armory.png" MaxWidth="80" MaxHeight="80" Width="80" Height="80"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     </Grid>
                 </Button>
 
-                <Button x:Name="portButton" IsEnabled="False" Background="Transparent" BorderThickness="0" MaxWidth="100" MaxHeight="100" Width="100" Height="100" VerticalAlignment="Top" HorizontalAlignment="Left"  Click="chooseBuilding">
+                <Button x:Name="portButton" IsEnabled="False" ToolTipService.ShowOnDisabled="True" Background="Transparent" BorderThickness="0" MaxWidth="100" MaxHeight="100" Width="100" Height="100" VerticalAlignment="Top" HorizontalAlignment="Left"  Click="chooseBuilding">
                     <Grid>
                         <Image x:Name="portImage"  Source="/Resources/port.png" MaxWidth="80" MaxHeight="80" Width="80" Height="80" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     </Grid>
                 </Button>
 
-                <Button x:Name="mineButton" IsEnabled="False" Background="Transparent" BorderThickness="0" MaxWidth="100" MaxHeight="100" Width="100" Height="100" VerticalAlignment="Top" HorizontalAlignment="Left"  Click="chooseBuilding">
+                <Button x:Name="mineButton" IsEnabled="False" ToolTipService.ShowOnDisabled="True" Background="Transparent" BorderThickness="0" MaxWidth="100" MaxHeight="100" Width="100" Height="100" VerticalAlignment="Top" HorizontalAlignment="Left"  Click="chooseBuilding">
                     <Grid>
                         <Image x:Name="mineImage"  Source="/Resources/mine.png" MaxWidth="80" MaxHeight="80" Width="80" Height="80"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     </Grid>
                 </Button>
 
-                <Button x:Name="farmButton" IsEnabled="False" Background="Transparent" BorderThickness="0" MaxWidth="100" MaxHeight="100" Width="100" Height="100" VerticalAlignment="Top" HorizontalAlignment="Left"  Click="chooseBuilding">
+                <Button x:Name="farmButton" IsEnabled="False" ToolTipService.ShowOnDisabled="True" Background="Transparent" BorderThickness="0" MaxWidth="100" MaxHeight="100" Width="100" Height="100" VerticalAlignment="Top" HorizontalAlignment="Left"  Click="chooseBuilding">
                     <Grid>
                         <Image x:Name="farmImage"  Source="/Resources/farm.png" MaxWidth="90" MaxHeight="90" Width="90" Height="90"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     </Grid>
@@ -148,7 +148,12 @@
                     </Grid>
                 </Button>
             </StackPanel>
-            <StackPanel x:Name="actualPlayer" Margin="100,0,0,0" Orientation="Horizontal">
+            <StackPanel x:Name="actualPlayer" Margin="20,0,0,0" Orientation="Horizontal">
+                <Button x:Name="backButton" ToolTip="Back to menu" Background="Transparent" BorderThickness="0" MaxHeight="90" MaxWidth="100" Width="100" Height="90" VerticalAlignment="Center" Click="backButton_Click">
+                    <Grid>
+                        <Image x:Name="backImage" Source="/Resources/back.png" MaxHeight="80" MaxWidth="80" Width="80" Height="80" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Grid>
+                </Button>
                 <Label x:Name="playerName" MaxWidth="300" MaxHeight="90" Width="300" Height="90" FontWeight="Bold" BorderThickness="2" BorderBrush="Black" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="50" Foreground="OrangeRed"/>
                 <Button x:Name="nextButton" Background="Transparent" BorderThickness="0" MaxHeight="90" MaxWidth="100" Width="100" Height="90" VerticalAlignment="Center" Click="nextButton_Click">
                 <Grid>

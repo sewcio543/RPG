@@ -8,7 +8,7 @@ namespace Game
     [Serializable]
     public class House : Building
     {
-  
+
         public House(Player player) : base(player)
         {
             Type = "house";
@@ -49,7 +49,7 @@ namespace Game
     [Serializable]
     public class Base : Building
     {
- 
+
         public Base(Player player, int x, int y) : base(player)
         {
             MaxHealth = 400;
@@ -63,7 +63,7 @@ namespace Game
 
     }
     [Serializable]
-    public class Port: Building
+    public class Port : Building
     {
         public Port(Player player) : base(player)
         {
@@ -149,4 +149,5 @@ namespace Game
             Y = y;
         }
     }
+
 }

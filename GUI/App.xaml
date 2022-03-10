@@ -4,6 +4,24 @@
              xmlns:local="clr-namespace:GUI"
              StartupUri="Menu.xaml">
     <Application.Resources>
-         
+        
+        <Style x:Key="ButtonStyle" TargetType="Button">
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Foreground" Value="Black"/>
+                        <Setter Property="Width" Value="360"/>
+                        <Setter Property="FontSize" Value="40"/>
+                    </Trigger>
+                </Style.Triggers>
+                
+                <Setter Property="Control.Foreground" Value="Green" />
+                <Setter Property="Control.Background" Value="LightSeaGreen"/>
+                <Setter Property="FontSize" Value="30"/>
+                <Setter Property="Width" Value="330"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+
+
+        </Style>
+
     </Application.Resources>
 </Application>

@@ -35,7 +35,6 @@ namespace GUI
             }
         }
 
-
         private void exit_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
@@ -46,33 +45,6 @@ namespace GUI
             DialogResult = true;
         }
 
-        private void nextButton_MouseEnter(object sender, MouseEventArgs e)
-        {
-            nextButton.FontSize = 40;
-            nextButton.Foreground = Brushes.Black;
-            nextButton.Width = 550;
-        }
-
-        private void nextButton_MouseLeave(object sender, MouseEventArgs e)
-        {
-            nextButton.FontSize = 30;
-            nextButton.Foreground = Brushes.Green;
-            nextButton.Width = 500;
-        }
-
-        private void exit_MouseEnter(object sender, MouseEventArgs e)
-        {
-            exitButton.FontSize = 40;
-            exitButton.Foreground = Brushes.Black;
-            exitButton.Width = 550;
-        }
-
-        private void exit_MouseLeave(object sender, MouseEventArgs e)
-        {
-            exitButton.FontSize = 30;
-            exitButton.Foreground = Brushes.Green;
-            exitButton.Width = 500;
-        }
 
     }
 }
