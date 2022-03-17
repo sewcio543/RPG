@@ -55,6 +55,7 @@ namespace GUI
             this.WindowState = WindowState.Maximized;
 
             player = board.Turn;
+            mainGrid.Background = Brushes.DarkGray;
             setPlayer();
 
             barrackButton.ToolTip = new Barrack(player).Tip();
@@ -309,12 +310,13 @@ namespace GUI
                 Grid.SetColumn(border, i);
                 Grid.SetRow(border, j);
             }
-            // uncharted psrt of the map
-            if (type == "unknown")
-                stackPanel.Background = Brushes.DarkGray;
+
+            // charted part of the map
+            if (type == "charted")
+                stackPanel.Background = Brushes.Green;
 
             // progress bar (for characters and buildings)
-            else if (board.getObjectFromSquare(i, j) != null && board.getObjectFromSquare(i, j).GetType().IsSubclassOf(typeof(Character)))
+            if (board.getObjectFromSquare(i, j) != null && board.getObjectFromSquare(i, j).GetType().IsSubclassOf(typeof(Character)))
             {
                 pb.Maximum = board.Characters.Find(a => a.X == i && a.Y == j).MaxHealth;
                 pb.Value = board.Characters.Find(a => a.X == i && a.Y == j).Health;
@@ -363,12 +365,9 @@ namespace GUI
             for (int i = 0; i < board.Map.GetLength(0); i++)
                 for (int j = 0; j < board.Map.GetLength(1); j++)
                 {
+                    // changing background of charted square
                     if (player.Charted[i, j])
-                        setImg(i, j, board.Map[i, j].Image, "", false);
-                    // uncharted
-                    else
-                        setImg(i, j, "", "unknown", false);
-
+                        setImg(i, j, board.Map[i, j].Image, "charted", false);
                 }
 
             foreach (Game.Object obj in board.Objects)
