@@ -15,9 +15,11 @@ provides great, simple visualization of the board and enables taking actions in 
 - As your level increases, you can build new buildings
 - Characters built in armory can destroy enemies' buildings and each other
 - Different characters have different atttributes like health, range or damage
-- Destroy castle of yuor enemy to eliminate him
+- Destroy castle of your enemy to eliminate him
 - Defend your castle, if it falls, you lose
 - The last kingdom alive wins the game
+
+![image](screen.png)
 
 
 
