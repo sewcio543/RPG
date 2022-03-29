@@ -50,6 +50,10 @@ namespace GUI
             maxMenuHeight = SystemParameters.MaximizedPrimaryScreenHeight / 10;
             maxMenuWidth = SystemParameters.MaximizedPrimaryScreenWidth;
             widthDifference = SystemParameters.MaximizedPrimaryScreenWidth - SystemParameters.VirtualScreenWidth;
+            this.MinHeight = SystemParameters.MaximizedPrimaryScreenHeight * 0.75;
+            this.MinWidth = SystemParameters.MaximizedPrimaryScreenWidth * 0.75;
+
+            adjustSize();
 
             this.SizeChanged += WindowSizeChanged;
             this.WindowState = WindowState.Maximized;
@@ -58,6 +62,7 @@ namespace GUI
             mainGrid.Background = Brushes.DarkGray;
             setPlayer();
 
+            // buttons' tips
             barrackButton.ToolTip = new Barrack(player).Tip();
             houseButton.ToolTip = new House(player).Tip();
             farmButton.ToolTip = new Farm(player).Tip();
@@ -82,6 +87,38 @@ namespace GUI
             label.Width = label.MaxWidth / maxMenuWidth * upperGrid.Width;
             label.Height = label.MaxHeight / maxMenuHeight * upperGrid.Height;
             label.FontSize *= 1 + ((label.Width * label.Height / size) - 1) * 0.7;
+        }
+
+        // adjusts max sizes to user's screen size, invoked in constructor
+        public void adjustSize()
+        {
+            // initial parameters
+            int width = 1950;
+            int height = 1050;
+
+            // every elements' max height and width are adjusted to user's screen size
+            foreach (Button i in buttons)
+            {
+                i.MaxHeight = i.MaxHeight / height * SystemParameters.MaximizedPrimaryScreenHeight;
+                i.MaxWidth = i.MaxWidth / width * maxMenuWidth;
+            }
+
+            foreach (Image i in images)
+            {
+                i.MaxHeight = i.MaxHeight / height * SystemParameters.MaximizedPrimaryScreenHeight;
+                i.MaxWidth = i.MaxWidth / width * maxMenuWidth;
+            }
+
+            foreach (Panel panel in panels.Keys)
+            {
+                panels[panel] = new Thickness(panels[panel].Left / width * maxMenuWidth, panels[panel].Top / height * SystemParameters.MaximizedPrimaryScreenHeight, 0, 0);
+            }
+
+            foreach (Label label in labels)
+            {
+                label.MaxHeight = label.MaxHeight / height * SystemParameters.MaximizedPrimaryScreenHeight;
+                label.MaxWidth = label.MaxWidth / width * maxMenuWidth;
+            }
         }
 
         // changes upper grid's elements size and positions based on window's size
@@ -448,13 +485,13 @@ namespace GUI
             Point position = Mouse.GetPosition(this);
 
             // creating chosen character
-            if (position.X < warrior.PointToScreen(new Point(0d, 0d)).X + warrior.Width)
+            if (position.X < warrior.TranslatePoint(new Point(0, 0), this).X + warrior.Width)
                 chosenCharacter = new Warrior(player);
 
-            else if (position.X < archer.PointToScreen(new Point(0d, 0d)).X + archer.Width)
+            else if (position.X < archer.TranslatePoint(new Point(0, 0), this).X + archer.Width)
                 chosenCharacter = new Archer(player);
 
-            else if (position.X < rider.PointToScreen(new Point(0d, 0d)).X + rider.Width)
+            else if (position.X < rider.TranslatePoint(new Point(0, 0), this).X + rider.Width)
                 chosenCharacter = new Rider(player);
             else
                 chosenCharacter = new Soldier(player);
@@ -474,10 +511,10 @@ namespace GUI
         private void createMachine(object sender, RoutedEventArgs e)
         {
             Point position = Mouse.GetPosition(this);
-            if (position.X < batteringRam.PointToScreen(new Point(0d, 0d)).X + batteringRam.Width)
+            if (position.X < batteringRam.TranslatePoint(new Point(0, 0), this).X + batteringRam.Width)
                 chosenCharacter = new BatteringRam(player);
 
-            else if (position.X < catapult.PointToScreen(new Point(0d, 0d)).X + catapult.Width)
+            else if (position.X < catapult.TranslatePoint(new Point(0, 0), this).X + catapult.Width)
                 chosenCharacter = new Catapult(player);
 
             else
@@ -526,7 +563,7 @@ namespace GUI
         }
 
         // enables appropriate options for chosen character
-            public void chooseCharacter(Character character)
+        public void chooseCharacter(Character character)
         {
             chosenChanged();
             chosenCharacter = character;

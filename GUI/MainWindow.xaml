@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI"
         mc:Ignorable="d"
-        Title="Game" Width="1900" Height="680" MinWidth="1000" MinHeight="600" WindowStartupLocation="CenterScreen" WindowState="Maximized" 
+        Title="Game" Width="1900" Height="680" MinWidth="1000" MinHeight="600" WindowStartupLocation="CenterScreen" WindowState="Maximized"  Background="DarkGray"
        >
     <Grid>
-        <StackPanel x:Name="upperGrid" Margin="20,0,0,0" Orientation="Horizontal" Background="AliceBlue" VerticalAlignment="Top" HorizontalAlignment="Left">
+        <StackPanel x:Name="upperGrid"  Orientation="Horizontal" Background="AliceBlue" VerticalAlignment="Top" HorizontalAlignment="Left">
 
-            <Grid x:Name="levelPanel" Margin="0,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
+            <Grid x:Name="levelPanel" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
                 <Label x:Name="levelTextbox" Margin="70,0,0,0" Content="Level" FontSize="26" HorizontalContentAlignment="Center" MaxWidth="80" MaxHeight="60"  Width="80" Height="60" Background="Transparent" FontWeight="Bold" VerticalAlignment="Top" HorizontalAlignment="Left" VerticalContentAlignment="Top"/>
                 <ProgressBar x:Name="levelBar" Margin="25,45,0,0" Value="0" ToolTip="0/100" Maximum="100" MaxWidth="190" MaxHeight="30" Width="190" Height="30" Background="White" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="#FF4C1968" />
                 <Grid VerticalAlignment="Top" HorizontalAlignment="Left">
@@ -162,7 +162,7 @@
                 </Button>
             </StackPanel>
         </StackPanel>
-        <Grid x:Name="mainGrid" Background="Green" Margin="0,100,0,0">
+        <Grid x:Name="mainGrid" Background="DarkGray" Margin="0,100,0,0">
 
 
         </Grid>
