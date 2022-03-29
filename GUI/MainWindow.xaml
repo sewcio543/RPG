@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI"
         mc:Ignorable="d"
-        Title="Game" Width="1900" Height="680" MinWidth="1000" MinHeight="600" WindowStartupLocation="CenterScreen" WindowState="Maximized"
+        Title="Game" Width="1900" Height="680" MinWidth="1000" MinHeight="600" WindowStartupLocation="CenterScreen" WindowState="Maximized" 
        >
     <Grid>
         <StackPanel x:Name="upperGrid" Margin="20,0,0,0" Orientation="Horizontal" Background="AliceBlue" VerticalAlignment="Top" HorizontalAlignment="Left">

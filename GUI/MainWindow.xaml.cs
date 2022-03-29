@@ -130,6 +130,7 @@ namespace GUI
             squareHeight = (mainGrid.Height - SystemParameters.CaptionHeight - SystemParameters.MenuBarHeight) / board.Squares.GetLength(1);
             layout();
             place(player);
+
         }
 
         // invoked after the end of every turn
@@ -497,20 +498,19 @@ namespace GUI
             place(player);
             Point position = Mouse.GetPosition(this);
 
-
-            if (position.X < barrackButton.PointToScreen(new Point(0d, 0d)).X + barrackButton.Width)
+            if (position.X < barrackButton.TranslatePoint(new Point(0, 0), this).X + barrackButton.ActualWidth)
                 chosenBuilding = new Barrack(player);
 
-            else if (position.X < houseButton.PointToScreen(new Point(0d, 0d)).X + houseButton.Width)
+            else if (position.X < houseButton.TranslatePoint(new Point(0, 0), this).X + houseButton.ActualWidth)
                 chosenBuilding = new House(player);
 
-            else if (position.X < armoryButton.PointToScreen(new Point(0d, 0d)).X + armoryButton.Width)
+            else if (position.X < armoryButton.TranslatePoint(new Point(0, 0), this).X + armoryButton.ActualWidth)
                 chosenBuilding = new Armory(player);
 
-            else if (position.X < portButton.PointToScreen(new Point(0d, 0d)).X + portButton.Width)
+            else if (position.X < portButton.TranslatePoint(new Point(0, 0), this).X + portButton.ActualWidth)
                 chosenBuilding = new Port(player);
 
-            else if (position.X < mineButton.PointToScreen(new Point(0d, 0d)).X + mineButton.Width)
+            else if (position.X < mineButton.TranslatePoint(new Point(0, 0), this).X + mineButton.ActualWidth)
                 chosenBuilding = new Mine(player);
 
             else
@@ -526,7 +526,7 @@ namespace GUI
         }
 
         // enables appropriate options for chosen character
-        public void chooseCharacter(Character character)
+            public void chooseCharacter(Character character)
         {
             chosenChanged();
             chosenCharacter = character;
