@@ -92,8 +92,8 @@ namespace GUI
         // adjusts max sizes to user's screen size, invoked in constructor
         public void adjustSize()
         {
-            // initial parameters
-            int width = 1950;
+            // initial parameters with a safe margin
+            int width = 2000;
             int height = 1050;
 
             // every elements' max height and width are adjusted to user's screen size
