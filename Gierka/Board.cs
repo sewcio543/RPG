@@ -8,6 +8,7 @@ using System.Xml.Serialization;
 
 namespace Game
 {
+	//
     // class board contains all the characters, buildings, players and map of the game
     [Serializable]
     public class Board
