@@ -21,6 +21,9 @@ namespace GUI
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    /// 
+
+    // WARNING: there might be some problems with scaling
     public partial class MainWindow : Window
     {
         Board board;
